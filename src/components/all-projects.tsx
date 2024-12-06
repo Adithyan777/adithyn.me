@@ -1,0 +1,63 @@
+import { motion } from 'framer-motion';
+import { ProjectCard } from '@/components/project-card';
+import { projects } from '@/data/projects';
+import { useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+export function ProjectsPage() {
+  const navigate = useNavigate();
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-7xl mx-auto py-12 px-4 relative"
+    >
+      <div className="flex justify-between items-start px-4 mb-6">
+        <motion.h1 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-5xl font-bold"
+        >
+          All Projects
+        </motion.h1>
+        
+        <Button 
+          variant="ghost"  className="mt-3 flex items-center gap-2"
+          onClick={() => navigate(-1)}
+        >
+          Go Back <ArrowLeft className="h-4 w-4" />
+        </Button>
+      </div>
+
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {projects.map((project, index) => (
+          <ProjectCard 
+            key={project.title} 
+            project={project} 
+            index={index}
+            variant={project.featured ? 'featured' : 'default'}
+          />
+        ))}
+      </motion.div>
+    </motion.div>
+  );
+}

@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { Github, Linkedin, Mail, Terminal, ArrowRight} from 'lucide-react';
+import { Github, Linkedin, Mail, Terminal, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useRef } from 'react';
@@ -7,7 +7,7 @@ import { useRef } from 'react';
 const skills = {
   'Programming Languages': ['Python', 'JavaScript', 'TypeScript', 'Java', 'C', 'SQL', 'HTML', 'CSS'],
   'Frameworks & Libraries': [
-    'React', 'Next.js', 'Express.js', 'Node.js', 'Zustand', 
+    'React', 'Next.js', 'Express.js', 'Node.js', 'Zustand',
     'Drizzle ORM', 'LangChain', 'AutoGen', 'Typer', 'Rich', 'Streamlit'
   ],
   'AI/ML': [
@@ -28,8 +28,8 @@ const about_me = [
 ];
 
 const details = {
-  'Hero Line' : "From building robust full-stack applications to crafting innovative GenAI tools, I'm all in for the challenge of translating ideas into meaningful solutions.",
-  'About Me' : about_me
+  'Hero Line': "From building robust full-stack applications to crafting innovative GenAI tools, I'm all in for the challenge of translating ideas into meaningful solutions.",
+  'About Me': about_me
 }
 
 const container = {
@@ -67,52 +67,52 @@ export function HomePage() {
           className="space-y-8"
         >
           <div className="space-y-2">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <Badge variant="secondary" className="mb-4">
-            Available for hire
-          </Badge>
-        </motion.div>
-        <h1 className="text-6xl font-bold leading-tight">
-          Hi, I'm{' '}
-          <span className="text-primary relative">
-            Adithyan K
             <motion.div
-          className="absolute -bottom-2 left-0 w-full h-2 bg-primary/20 rounded-full"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ delay: 0.5 }}
-            />
-          </span>
-        </h1>
-        <br></br>
-        <p className="text-xl text-muted-foreground">
-          {details['Hero Line']}
-        </p>
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <Badge variant="secondary" className="mb-4">
+                Available for hire
+              </Badge>
+            </motion.div>
+            <h1 className="text-6xl font-bold leading-tight">
+              Hi, I'm{' '}
+              <span className="text-primary relative">
+                Adithyan K
+                <motion.div
+                  className="absolute -bottom-2 left-0 w-full h-2 bg-primary/20 rounded-full"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.5 }}
+                />
+              </span>
+            </h1>
+            <br></br>
+            <p className="text-xl text-muted-foreground">
+              {details['Hero Line']}
+            </p>
           </div>
 
           <div className="flex flex-wrap gap-4">
-        <Button variant="default" size="lg">
-          <Terminal className="mr-2 h-4 w-4" />
-          View Work
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
-        <Button variant="outline" size="lg">
-          <Mail className="mr-2 h-4 w-4" />
-          Contact Me
-        </Button>
+            <Button variant="default" size="lg">
+              <Terminal className="mr-2 h-4 w-4" />
+              View Work
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+            <Button variant="outline" size="lg">
+              <Mail className="mr-2 h-4 w-4" />
+              Contact Me
+            </Button>
           </div>
 
           <div className="flex gap-4">
-        <Button variant="ghost" size="icon">
-          <Github className="h-5 w-5" />
-        </Button>
-        <Button variant="ghost" size="icon">
-          <Linkedin className="h-5 w-5" />
-        </Button>
+            <Button variant="ghost" size="icon">
+              <Github className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon">
+              <Linkedin className="h-5 w-5" />
+            </Button>
           </div>
         </motion.div>
 
@@ -123,21 +123,21 @@ export function HomePage() {
             initial="hidden"
             animate={isAboutInView ? "show" : "hidden"}
           >
-            <motion.p 
+            <motion.p
               variants={item}
               className="text-lg text-muted-foreground leading-relaxed"
             >
               {details['About Me'][0]}
             </motion.p>
             <br></br>
-            <motion.p 
+            <motion.p
               variants={item}
               className="text-lg text-muted-foreground leading-relaxed"
             >
               {details['About Me'][1]}
             </motion.p>
             <br></br>
-            <motion.p 
+            <motion.p
               variants={item}
               className="text-lg text-muted-foreground leading-relaxed"
             >
@@ -172,8 +172,8 @@ export function HomePage() {
                       whileHover={{ scale: 1.05 }}
                       className="transition-colors"
                     >
-                      <Badge 
-                        variant="secondary" 
+                      <Badge
+                        variant="secondary"
                         className="text-sm hover:bg-primary hover:text-primary-foreground cursor-default"
                       >
                         {skill}
