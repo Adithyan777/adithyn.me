@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 44 65% 95%;
+    --foreground: 44 5% 10%;
+    --card: 44 50% 90%;
+    --card-foreground: 44 5% 15%;
+    --popover: 44 65% 95%;
+    --popover-foreground: 44 95% 10%;
+    --primary: 44 98% 16%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 44 30% 70%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 6 30% 85%;
+    --muted-foreground: 44 5% 40%;
+    --accent: 6 30% 80%;
+    --accent-foreground: 44 5% 15%;
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 44 5% 90%;
+    --border: 44 30% 54%;
+    --input: 44 30% 50%;
+    --ring: 44 98% 16%;
+    --radius: 0.5rem;
+   }
+
+  .dark {
+    --background: 44 27% 5%;
+    --foreground: 44 5% 90%;
+    --card: 44 27% 0%;
+    --card-foreground: 44 5% 90%;
+    --popover: 44 27% 5%;
+    --popover-foreground: 44 5% 90%;
+    --primary: 44 100% 78%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 44 27% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 6 27% 15%;
+    --muted-foreground: 44 5% 60%;
+    --accent: 6 27% 15%;
+    --accent-foreground: 44 5% 90%;
+    --destructive: 0 50% 30%;
+    --destructive-foreground: 44 5% 90%;
+    --border: 44 27% 18%;
+    --input: 44 27% 18%;
+    --ring: 44 100% 78%;
+    --radius: 0.5rem;
+   }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Darker Grotesque', sans-serif;
+  }
+}
+
+.mode-toggle {
+  @apply transition-all duration-300;
+}
+
+.mode-toggle-content {
+  @apply transition-colors duration-500;
+}
