@@ -3,6 +3,7 @@ import { Github, Linkedin, Mail, Terminal, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useRef } from 'react';
+import { scrollToSection } from '@/lib/scroll-utils';
 
 const skills = {
   'Programming Languages': ['Python', 'JavaScript', 'TypeScript', 'Java', 'C', 'SQL', 'HTML', 'CSS'],
@@ -57,7 +58,7 @@ export function HomePage() {
   const isTechInView = useInView(techRef, { once: true });
 
   return (
-    <div className="max-w-6xl mx-auto py-12 px-4">
+    <div className="max-w-6xl mx-auto py-12 px-2">
       <div className="flex flex-col gap-10">
         <motion.div
           ref={heroRef}
@@ -95,12 +96,20 @@ export function HomePage() {
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <Button variant="default" size="lg">
+            <Button 
+              variant="default" 
+              size="lg" 
+              onClick={() => scrollToSection('#projects')}
+            >
               <Terminal className="mr-2 h-4 w-4" />
               View Work
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button variant="outline" size="lg">
+            <Button 
+              variant="outline" 
+              size="lg"
+              onClick={() => scrollToSection('#contact')}
+            >
               <Mail className="mr-2 h-4 w-4" />
               Contact Me
             </Button>

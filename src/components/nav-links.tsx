@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { scrollToSection } from '@/lib/scroll-utils';
 
 const links = [
   { href: '#home', label: 'Home' },
@@ -9,10 +10,9 @@ const links = [
 ];
 
 export function NavLinks({ className }: { className?: string }) {
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    scrollToSection(href);
   };
 
   return (
@@ -21,7 +21,7 @@ export function NavLinks({ className }: { className?: string }) {
         <a
           key={link.href}
           href={link.href}
-          onClick={(e) => scrollToSection(e, link.href)}
+          onClick={(e) => handleClick(e, link.href)}
           className={cn(
             'px-4 py-2 text-sm font-medium transition-colors hover:text-primary',
             className

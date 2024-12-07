@@ -3,11 +3,12 @@ import { Navbar } from '@/components/navbar';
 import { motion } from 'framer-motion';
 import { HomePage } from '@/pages/home';
 import { ExperiencePage } from '@/pages/experience';
-import { BlogPage } from '@/pages/blog';
+import { BlogPage, isBlogEmpty } from '@/pages/blog';
 import { ContactPage } from '@/pages/contact';
-import { FeaturedProjects } from './components/featured-projects';
+import { FeaturedProjects } from './pages/featured-projects';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { ProjectsPage } from './components/all-projects';
+import { ProjectsPage } from './pages/all-projects';
+import { BeyondCode } from './pages/beyond-code';
 
 function AppContent() {
   const location = useLocation();
@@ -34,8 +35,11 @@ function AppContent() {
               <section id="experience" className="min-h-screen md:min-h-[50vh]">
                 <ExperiencePage />
               </section>
-              <section id="blog" className="min-h-screen md:min-h-[50vh]">
+              <section id="blog" className={`min-h-[30vh] ${isBlogEmpty ? 'md:min-h-[10vh]' : 'md:min-h-[50vh]'}`}>
                 <BlogPage />
+              </section>
+              <section id="beyond-code" className="min-h-screen md:min-h-[50vh]">
+                <BeyondCode />
               </section>
               <section id="contact" className="min-h-screen md:min-h-[50vh]">
                 <ContactPage />

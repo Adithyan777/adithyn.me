@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { X } from 'lucide-react';
@@ -24,16 +24,30 @@ export interface ProjectCardProps {
   variant?: 'default' | 'featured';
 }
 
+function getImagePath(imagePath: string): string {
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+    return imagePath;
+  }
+  return `/images/${imagePath}`;
+}
+
 export function ProjectCard({ project, index, variant = 'default' }: ProjectCardProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   return (
     <>
       <motion.div
+        ref={ref}
         layout
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: index * 0.1 }}
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ 
+          delay: index * 0.2,
+          duration: 0.5,
+          ease: "easeOut"
+        }}
         whileHover={{ y: -5 }}
       >
         <Card 
@@ -49,15 +63,14 @@ export function ProjectCard({ project, index, variant = 'default' }: ProjectCard
           <CardHeader>
             <CardTitle className="flex justify-between items-center text-2xl">
               {project.title}
-              
             </CardTitle>
             <CardDescription>{project.description}</CardDescription>
           </CardHeader>
           <CardContent>
             <img
-              src={project.image}
+              src={getImagePath(project.image)}
               alt={project.title}
-              className="w-full h-48 object-cover rounded-md mb-4"
+              className="w-full object-contain rounded-md mb-4 bg-secondary/30"
             />
             <div className="flex gap-2 flex-wrap">
               {project.tech.map((tech) => (
@@ -101,11 +114,11 @@ export function ProjectCard({ project, index, variant = 'default' }: ProjectCard
                   <X className="h-4 w-4" />
                 </Button>
                 
-                <div className="relative h-64">
+                <div className="relative"> {/* Removed fixed height */}
                   <img
-                    src={project.image}
+                    src={getImagePath(project.image)}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-full object-contain bg-secondary/30"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
                   <h2 className="absolute bottom-4 left-4 text-3xl font-bold">{project.title}</h2>

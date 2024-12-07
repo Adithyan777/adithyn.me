@@ -22,7 +22,7 @@ export const projects: Project[] = [
     description: 'A dataset bias detection and augmentation tool.',
     longDescription: 'A Streamlit-based web application for analyzing categorical data, detecting bias, performing independence testing, and augmenting data with AI.',
     tech: ['Streamlit', 'OpenAI API', 'Docker', 'GitHub Actions'],
-    image: 'https://via.placeholder.com/800x600.png?text=BiasBalance',
+    image: 'bias-balance.jpg',
     features: [
       'Dataset upload with automatic categorical column detection',
       'Bias detection using Chi-squared tests',
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     description: 'A task management dashboard with list and Kanban board views.',
     longDescription: 'A web app for managing tasks with drag-and-drop Kanban board functionality, user authentication, and advanced task filtering and sorting features.',
     tech: ['Next.js', 'Express.js', 'MongoDB', 'Shadcn', 'dnd-kit'],
-    image: 'https://via.placeholder.com/800x600.png?text=Kanban-Board+Task+Manager',
+    image: 'kanban.jpg',
     features: [
       'JWT-based user authentication',
       'CRUD operations for tasks',
@@ -74,7 +74,7 @@ export const projects: Project[] = [
     description: 'A comprehensive attendance tracker for students.',
     longDescription: 'A web application for managing attendance records with user authentication, developed with the MERN stack for scalability and reliability.',
     tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Vite'],
-    image: 'https://via.placeholder.com/800x600.png?text=BunkBetter',
+    image: 'bunk-better.jpg',
     features: [
       'Secure authentication using JWT',
       'Real-time attendance tracking',

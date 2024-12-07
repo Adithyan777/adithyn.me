@@ -9,21 +9,21 @@ export function ContactPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="max-w-6xl mx-auto py-12 px-4"
+      className="max-w-6xl mx-auto py-12 px-2"
     >
       {/* <div className="grid gap-12 lg:grid-cols-2"> */}
       <div>
         <div className="space-y-8">
           <div>
-            <h1 className="text-5xl font-bold mb-2">Get in Touch</h1>
+            <h1 className="text-5xl font-bold px-0 mb-4">Get in Touch</h1>
             <p className="text-muted-foreground">
               Have a project in mind? Let's create something amazing together.
             </p>
           </div>
-
+          <div className='px-2 space-y-6'>
           <Card>
             <CardHeader>
-              <CardTitle>Contact Information</CardTitle>
+              <CardTitle className='text-2xl'>Contact Information</CardTitle>
               <CardDescription>
                 Feel free to reach out through any of these channels
               </CardDescription>
@@ -35,7 +35,7 @@ export function ContactPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Connect With Me</CardTitle>
+              <CardTitle className='text-2xl'>Connect With Me</CardTitle>
               <CardDescription>
                 Follow me on social media for updates and more
               </CardDescription>
@@ -44,6 +44,7 @@ export function ContactPage() {
               <SocialLinks />
             </CardContent>
           </Card>
+          </div>
         </div>
       </div>
     </motion.div>

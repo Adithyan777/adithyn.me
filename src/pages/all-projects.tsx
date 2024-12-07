@@ -23,9 +23,9 @@ export function ProjectsPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="max-w-7xl mx-auto py-12 px-4 relative"
+      className="max-w-7xl mx-auto py-12 px-2 relative"
     >
-      <div className="flex justify-between items-start px-4 mb-6">
+      <div className="flex justify-between items-start mb-6">
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ export function ProjectsPage() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        className="grid gap-6 px-2 sm:grid-cols-2"
       >
         {projects.map((project, index) => (
           <ProjectCard 
