@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { Github, Linkedin, Mail, Terminal, ArrowRight } from 'lucide-react';
+import { Mail, Terminal, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useRef } from 'react';
@@ -12,7 +12,11 @@ const skills = {
     'Drizzle ORM', 'LangChain', 'AutoGen', 'Typer', 'Rich', 'Streamlit'
   ],
   'AI/ML': [
-    'Core ML Concepts', 'LLM Integration', 'Prompt Engineering',
+    'Core ML Concepts', 'Pandas', 'NumPy', 'Scikit-learn',
+    'Data Preprocessing', 'Model Evaluation','OpenCV'
+  ],
+  'GenAI': [
+    'LLM Integration', 'Prompt Engineering',
     'Structured Output Handling', 'AI Automation'
   ],
   'Databases': ['PostgreSQL', 'MongoDB'],
@@ -79,7 +83,7 @@ export function HomePage() {
             </motion.div>
             <h1 className="text-6xl font-bold leading-tight">
               Hi, I'm{' '}
-              <span className="text-primary relative">
+              <span className="text-primary relative whitespace-nowrap">
                 Adithyan K
                 <motion.div
                   className="absolute -bottom-2 left-0 w-full h-2 bg-primary/20 rounded-full"
@@ -115,14 +119,14 @@ export function HomePage() {
             </Button>
           </div>
 
-          <div className="flex gap-4">
+          {/* <div className="flex gap-4">
             <Button variant="ghost" size="icon">
               <Github className="h-5 w-5" />
             </Button>
             <Button variant="ghost" size="icon">
               <Linkedin className="h-5 w-5" />
             </Button>
-          </div>
+          </div> */}
         </motion.div>
 
         <div ref={aboutRef}>

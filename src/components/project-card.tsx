@@ -15,6 +15,8 @@ export interface Project {
   features?: string[];
   demoUrl?: string;
   githubUrl?: string;
+  featured?: boolean;
+  notCompleted?: boolean;
   testCredentials?: TestCredentials;
 }
 
@@ -57,6 +59,11 @@ export function ProjectCard({ project, index, variant = 'default' }: ProjectCard
           {variant === 'featured' && (
             <div className="absolute -top-2 -right-2 z-10">
               <Badge variant="default">Featured</Badge>
+            </div>
+          )}
+          {project.notCompleted && (
+            <div className="absolute -top-2 -left-2 z-10">
+              <Badge variant="secondary">Work in Progress</Badge>
             </div>
           )}
           

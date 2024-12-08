@@ -4,6 +4,8 @@ import { projects } from '@/data/projects';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useMediaQuery } from '@/hooks/use-media-query';
+import { ProjectCardMobile } from '@/components/project-card-mobile';
 
 const container = {
   hidden: { opacity: 0 },
@@ -17,6 +19,7 @@ const container = {
 
 export function ProjectsPage() {
   const navigate = useNavigate();
+  const isMobile = useMediaQuery('(max-width: 640px)');
 
   return (
     <motion.div
@@ -50,12 +53,21 @@ export function ProjectsPage() {
         className="grid gap-6 px-2 sm:grid-cols-2"
       >
         {projects.map((project, index) => (
-          <ProjectCard 
-            key={project.title} 
-            project={project} 
-            index={index}
-            variant={project.featured ? 'featured' : 'default'}
-          />
+          isMobile ? (
+            <ProjectCardMobile
+              key={project.title}
+              project={project}
+              index={index}
+              variant={project.featured ? 'featured' : 'default'}
+            />
+          ) : (
+            <ProjectCard
+              key={project.title}
+              project={project}
+              index={index}
+              variant={project.featured ? 'featured' : 'default'}
+            />
+          )
         ))}
       </motion.div>
     </motion.div>

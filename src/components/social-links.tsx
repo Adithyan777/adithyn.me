@@ -1,38 +1,26 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Instagram, Youtube } from 'lucide-react';
+import { Github, Linkedin, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const socialLinks = [
   {
     icon: Github,
     label: 'GitHub',
-    href: 'https://github.com',
+    href: 'https://github.com/Adithyan777',
     color: 'hover:text-[#333]'
   },
   {
     icon: Linkedin,
     label: 'LinkedIn',
-    href: 'https://linkedin.com',
+    href: 'https://www.linkedin.com/in/adithyan-krishnan-1b32bb290',
     color: 'hover:text-[#0077b5]'
   },
   {
     icon: Twitter,
     label: 'Twitter',
-    href: 'https://twitter.com',
+    href: 'https://x.com/adithyn_krshna',
     color: 'hover:text-[#1DA1F2]'
   },
-  {
-    icon: Instagram,
-    label: 'Instagram',
-    href: 'https://instagram.com',
-    color: 'hover:text-[#E4405F]'
-  },
-  {
-    icon: Youtube,
-    label: 'YouTube',
-    href: 'https://youtube.com',
-    color: 'hover:text-[#FF0000]'
-  }
 ];
 
 export function SocialLinks() {

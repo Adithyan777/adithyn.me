@@ -13,6 +13,7 @@ export interface Project {
   demoUrl?: string;
   githubUrl?: string;
   featured?: boolean;
+  notCompleted?: boolean;
   testCredentials?: TestCredentials;
 }
 
@@ -33,6 +34,7 @@ export const projects: Project[] = [
     demoUrl: 'https://biasbalance.demo', // Add your live demo URL here
     githubUrl: 'https://github.com/username/biasbalance', // Add your GitHub URL here
     featured: true,
+    notCompleted: false,
   },
   {
     title: 'CodeCatalyst',
@@ -45,9 +47,10 @@ export const projects: Project[] = [
       'Custom AutoGen Agent classes for specialized tasks',
       'Supports both traditional and Docker-based environments'
     ],
-    demoUrl: 'https://codecatalyst.demo', // Add your live demo URL here
+    // demoUrl: 'https://codecatalyst.demo', // Add your live demo URL here
     githubUrl: 'https://github.com/username/codecatalyst', // Add your GitHub URL here
-    featured: true
+    featured: true,
+    notCompleted: true
   },
   {
     title: 'Kanban-Board Task Manager',
@@ -82,7 +85,7 @@ export const projects: Project[] = [
     ],
     demoUrl: 'https://bunkbetter.demo', // Add your live demo URL here
     githubUrl: 'https://github.com/username/bunkbetter', // Add your GitHub URL here
-    featured: false,
+    featured: true,
     testCredentials: {
       email: "test@gmail.com",
       password: "12345678"
@@ -102,6 +105,7 @@ export const projects: Project[] = [
     ],
     demoUrl: 'https://aidatabaseqa.demo', // Add your live demo URL here
     githubUrl: 'https://github.com/username/aidatabaseqa', // Add your GitHub URL here
-    featured: false
+    featured: false,
+    notCompleted: false
   }
 ];

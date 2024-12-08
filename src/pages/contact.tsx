@@ -28,19 +28,8 @@ export function ContactPage() {
                 Feel free to reach out through any of these channels
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <ContactInfo />
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className='text-2xl'>Connect With Me</CardTitle>
-              <CardDescription>
-                Follow me on social media for updates and more
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
+            <CardContent className='space-y-8'>
+              <ContactInfo/>
               <SocialLinks />
             </CardContent>
           </Card>

@@ -3,15 +3,19 @@ import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProjectCard } from '@/components/project-card';
+import { ProjectCardMobile } from '@/components/project-card-mobile';
 import { projects } from '@/data/projects';
+import { useMediaQuery } from '@/hooks/use-media-query';
 
 export function FeaturedProjects() {
     const featuredProjects = projects.filter(p => p.featured);
     const ref = useRef(null);
     const isInView = useInView(ref, { 
       once: true,
-      margin: "0px 0px -200px 0px" // Triggers animation slightly before element enters viewport
+      margin: "0px 0px -200px 0px"
     });
+    
+    const isMobile = useMediaQuery('(max-width: 640px)');
 
   return (
     <motion.div
@@ -33,12 +37,21 @@ export function FeaturedProjects() {
 
           <div className="grid gap-6 sm:grid-cols-2 px-2">
             {featuredProjects.map((project, index) => (
-              <ProjectCard
-                key={project.title}
-                project={project}
-                index={index}
-                variant="featured"
-              />
+              isMobile ? (
+                <ProjectCardMobile
+                  key={project.title}
+                  project={project}
+                  index={index}
+                  variant="featured"
+                />
+              ) : (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  index={index}
+                  variant="featured"
+                />
+              )
             ))}
           </div>
         </div>

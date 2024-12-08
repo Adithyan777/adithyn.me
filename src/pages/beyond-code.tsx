@@ -59,7 +59,7 @@ export function BeyondCode() {
         </p>
         
         <div className="grid grid-cols-1 px-2 mt-12 space-y-8 md:space-y-0 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {hobbies.map((hobby, index) => (
+          {hobbies.map((hobby) => (
             <motion.div
               key={hobby.title}
               variants={itemVariants}
