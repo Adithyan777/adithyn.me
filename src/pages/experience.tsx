@@ -7,12 +7,12 @@ const experiences = [
     position: 'Full Stack Developer Intern',
     period: 'June 2024 - July 2024',
     description: [
-      'Designed and implemented a license management website for AI simulation software',
+      'Designed and implemented a license management website resulting in increased client retention', 
       'Developed CRUD features for licenses and clients with expiring license alerts and CSV export',
       'Implemented a three-tier user privilege system',
       'Dockerized Next.js app and PostgreSQL database, deployed on Google Cloud VM'
     ],
-    technologies: ['Next.js', 'Docker', 'PostgreSQL', 'Google Cloud']
+    technologies: ['Next.js', 'Docker', 'PostgreSQL', 'Google Cloud', 'DrizzleORM']
   },
   {
     company: 'Messen Controls LLC',
