@@ -15,6 +15,7 @@ export interface Project {
   featured?: boolean;
   notCompleted?: boolean;
   testCredentials?: TestCredentials;
+  coldReboot?: boolean;
 }
 
 export const projects: Project[] = [
@@ -34,6 +35,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/Adithyan777/BiasBalance',
     featured: true,
     notCompleted: false,
+    coldReboot: true,
   },
   {
     title: 'Kanban-Board Task Manager',

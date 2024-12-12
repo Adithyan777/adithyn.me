@@ -4,21 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { TestCredentials } from '@/data/projects';
-
-export interface Project {
-  title: string;
-  description: string;
-  tech: string[];
-  image: string;
-  longDescription?: string;
-  features?: string[];
-  demoUrl?: string;
-  githubUrl?: string;
-  featured?: boolean;
-  notCompleted?: boolean;
-  testCredentials?: TestCredentials;
-}
+import { LoadingDialog } from "./loading-dialog";
+import { fetchWithTimeout } from '@/lib/fetch-with-timeout';
+import { Project } from '@/data/projects';
 
 export interface ProjectCardProps {
   project: Project;
@@ -35,8 +23,32 @@ function getImagePath(imagePath: string): string {
 
 export function ProjectCard({ project, index, variant = 'default' }: ProjectCardProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+
+  const handleDemoClick = async (e: React.MouseEvent<HTMLAnchorElement> | null, url: string) => {
+    if (project.coldReboot && url) {
+      e?.preventDefault();
+      setIsLoading(true);
+      setError(null);
+      
+      try {
+        await fetchWithTimeout(url);
+        window.open(url, "_blank");
+        setIsLoading(false);
+      } catch (err: any) {
+        setError(err.message);
+      }
+    }
+  };
+
+  const handleRetry = () => {
+    if (project.demoUrl) {
+      handleDemoClick(null, project.demoUrl);
+    }
+  };
 
   return (
     <>
@@ -160,7 +172,12 @@ export function ProjectCard({ project, index, variant = 'default' }: ProjectCard
                   <div className="flex gap-4">
                     {project.demoUrl && (
                       <Button asChild>
-                        <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                        <a 
+                          href={project.demoUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          onClick={(e) => handleDemoClick(e, project.demoUrl!)}
+                        >
                           View Demo
                         </a>
                       </Button>
@@ -179,6 +196,14 @@ export function ProjectCard({ project, index, variant = 'default' }: ProjectCard
           </motion.div>
         )}
       </AnimatePresence>
+      <LoadingDialog 
+        open={isLoading} 
+        onOpenChange={setIsLoading}
+        error={error}
+        onRetry={handleRetry}
+        demoUrl={project.demoUrl? project.demoUrl : ""}
+        projectTitle={project.title}
+      />
     </>
   );
 }
