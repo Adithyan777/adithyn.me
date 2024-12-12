@@ -4,8 +4,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { LoadingDialog } from "./loading-dialog";
-import { fetchWithTimeout } from '@/lib/fetch-with-timeout';
 import { Project } from '@/data/projects';
 
 export interface ProjectCardProps {
@@ -23,30 +21,17 @@ function getImagePath(imagePath: string): string {
 
 export function ProjectCard({ project, index, variant = 'default' }: ProjectCardProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const handleDemoClick = async (e: React.MouseEvent<HTMLAnchorElement> | null, url: string) => {
-    if (project.coldReboot && url) {
-      e?.preventDefault();
-      setIsLoading(true);
-      setError(null);
-      
-      try {
-        await fetchWithTimeout(url);
-        window.open(url, "_blank");
-        setIsLoading(false);
-      } catch (err: any) {
-        setError(err.message);
-      }
-    }
-  };
-
-  const handleRetry = () => {
-    if (project.demoUrl) {
-      handleDemoClick(null, project.demoUrl);
+  const handleDemoClick = (e: React.MouseEvent<HTMLAnchorElement>, url: string) => {
+    if (project.coldReboot) {
+      e.preventDefault();
+      const params = new URLSearchParams({
+        url,
+        title: project.title
+      });
+      window.open(`/loading?${params.toString()}`, '_blank');
     }
   };
 
@@ -196,14 +181,6 @@ export function ProjectCard({ project, index, variant = 'default' }: ProjectCard
           </motion.div>
         )}
       </AnimatePresence>
-      <LoadingDialog 
-        open={isLoading} 
-        onOpenChange={setIsLoading}
-        error={error}
-        onRetry={handleRetry}
-        demoUrl={project.demoUrl? project.demoUrl : ""}
-        projectTitle={project.title}
-      />
     </>
   );
 }

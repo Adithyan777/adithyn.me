@@ -1,11 +1,9 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ProjectCardProps } from './project-card';
-import { LoadingDialog } from "./loading-dialog";
-import { fetchWithTimeout } from '@/lib/fetch-with-timeout';
 
 function getImagePath(imagePath: string): string {
   if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
@@ -17,28 +15,15 @@ function getImagePath(imagePath: string): string {
 export function ProjectCardMobile({ project, index, variant = 'default' }: ProjectCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const handleDemoClick = async (e: React.MouseEvent<HTMLAnchorElement> | null, url: string) => {
-    if (project.coldReboot && url) {
-      e?.preventDefault();
-      setIsLoading(true);
-      setError(null);
-      
-      try {
-        await fetchWithTimeout(url);
-        window.open(url, "_blank");
-        setIsLoading(false);
-      } catch (err: any) {
-        setError(err.message);
-      }
-    }
-  };
-
-  const handleRetry = () => {
-    if (project.demoUrl) {
-      handleDemoClick(null, project.demoUrl);
+  const handleDemoClick = (e: React.MouseEvent<HTMLAnchorElement>, url: string) => {
+    if (project.coldReboot) {
+      e.preventDefault();
+      const params = new URLSearchParams({
+        url,
+        title: project.title
+      });
+      window.open(`/loading?${params.toString()}`, '_blank');
     }
   };
 
@@ -138,14 +123,6 @@ export function ProjectCardMobile({ project, index, variant = 'default' }: Proje
           </div>
         </CardContent>
       </Card>
-      <LoadingDialog 
-        open={isLoading} 
-        onOpenChange={setIsLoading}
-        error={error}
-        onRetry={handleRetry}
-        demoUrl={project.demoUrl? project.demoUrl : ""}
-        projectTitle={project.title}
-      />
     </motion.div>
   );
 }

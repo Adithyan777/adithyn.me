@@ -9,10 +9,11 @@ import { FeaturedProjects } from './pages/featured-projects';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { ProjectsPage } from './pages/all-projects';
 import { BeyondCode } from './pages/beyond-code';
+import { LoadingPage } from './pages/loading';
 
 function AppContent() {
   const location = useLocation();
-  const showNavbar = location.pathname !== '/projects';
+  const showNavbar = !['/projects', '/loading'].includes(location.pathname);
 
   return (
     <motion.div
@@ -47,6 +48,7 @@ function AppContent() {
             </>
           }/>
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/loading" element={<LoadingPage />} />
         </Routes>
       </main>
     </motion.div>
