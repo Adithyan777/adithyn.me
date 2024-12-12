@@ -1,9 +1,11 @@
 import { motion, useInView } from 'framer-motion';
-import { Mail, Terminal, ArrowRight } from 'lucide-react';
+import { Mail, Terminal, ArrowRight, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useRef } from 'react';
 import { scrollToSection } from '@/lib/scroll-utils';
+
+// const resumeLink = "https://drive.google.com/file/d/1o2spqn1kc4i3bFTkqp_KwQDwSWmghBhR/view?usp=sharing"
 
 const skills = {
   'Programming Languages': ['Python', 'JavaScript', 'TypeScript', 'Java', 'C', 'SQL', 'HTML', 'CSS'],
@@ -71,32 +73,52 @@ export function HomePage() {
           transition={{ duration: 0.5 }}
           className="space-y-8"
         >
-          <div className="space-y-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+            <div className="space-y-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <Badge variant="secondary" className="mb-4">
+                  Available for hire
+                </Badge>
+              </motion.div>
+              <h1 className="text-6xl font-bold leading-tight">
+                Hi, I'm{' '}
+                <span className="text-primary relative whitespace-nowrap">
+                  Adithyan K
+                  <motion.div
+                    className="absolute -bottom-2 left-0 w-full h-2 bg-primary/20 rounded-full"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ delay: 0.5 }}
+                  />
+                </span>
+              </h1>
+              <br></br>
+              <p className="text-xl text-muted-foreground">
+                {details['Hero Line']}
+              </p>
+            </div>
+
+            {/* Code for Photo */}
+            {/* <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+              className="relative w-[280px] h-[280px] mx-auto md:mx-0"
             >
-              <Badge variant="secondary" className="mb-4">
-                Available for hire
-              </Badge>
-            </motion.div>
-            <h1 className="text-6xl font-bold leading-tight">
-              Hi, I'm{' '}
-              <span className="text-primary relative whitespace-nowrap">
-                Adithyan K
-                <motion.div
-                  className="absolute -bottom-2 left-0 w-full h-2 bg-primary/20 rounded-full"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 0.5 }}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-primary/10 rounded-[2.5rem] rotate-6" />
+              <div className="absolute inset-0 bg-gradient-to-l from-primary/30 to-primary/10 rounded-[2.5rem] -rotate-6" />
+              <div className="relative w-full h-full rounded-[2rem] overflow-hidden border-2 border-primary/20">
+                <img
+                  src="/images/adithyan.jpg"
+                  alt="Adithyan K"
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                 />
-              </span>
-            </h1>
-            <br></br>
-            <p className="text-xl text-muted-foreground">
-              {details['Hero Line']}
-            </p>
+              </div>
+            </motion.div> */}
           </div>
 
           <div className="flex flex-wrap gap-4">
@@ -119,14 +141,21 @@ export function HomePage() {
             </Button>
           </div>
 
-          {/* <div className="flex gap-4">
-            <Button variant="ghost" size="icon">
-              <Github className="h-5 w-5" />
+            <Button
+              variant="outline"
+              size="default"
+              asChild
+            >
+              <a 
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center"
+              >
+              <FileText className="mr-2 h-4 w-4" />
+              Resume
+              </a>
             </Button>
-            <Button variant="ghost" size="icon">
-              <Linkedin className="h-5 w-5" />
-            </Button>
-          </div> */}
         </motion.div>
 
         <div ref={aboutRef}>
@@ -156,6 +185,22 @@ export function HomePage() {
             >
               {details['About Me'][2]}
             </motion.p>
+            {/* <Button
+              variant="outline"
+              size="default"
+              className='mt-4'
+              asChild
+            >
+              <a 
+                href={resumeLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center"
+              >
+                <FileText className="mr-2 h-4 w-4" />
+                Resume
+              </a>
+            </Button> */}
           </motion.div>
         </div>
 
