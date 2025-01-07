@@ -10,10 +10,16 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { ProjectsPage } from './pages/all-projects';
 import { BeyondCode } from './pages/beyond-code';
 import { LoadingPage } from './pages/loading';
+import posthog from 'posthog-js';
+import { useEffect } from 'react';
 
 function AppContent() {
   const location = useLocation();
   const showNavbar = !['/projects', '/loading'].includes(location.pathname);
+
+  useEffect(() => {
+    posthog.capture('$pageview');
+  }, [location]);
 
   return (
     <motion.div
