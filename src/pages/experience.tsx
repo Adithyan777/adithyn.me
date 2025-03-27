@@ -3,6 +3,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 
 const experiences = [
   {
+    company: 'Metafog',
+    position: 'Lead Software Engineer',
+    period: 'January 2025 - Present',
+    description: [
+        "Designed and developed frontend, backend, and infrastructure for a decentralized AI search platform.",
+        "Built a high-performance API for decentralized web search, integrating real-time web crawling for accurate data and LLMs for summarization.",
+        "Engineered the provider infrastructure using Docker and Nginx, ensuring scalability and resilience.",
+        "Worked in a startup-like environment, owning the full development lifecycle while collaborating on ideas."
+      ],
+    technologies: ["Next.js", "Docker", "Nginx", "Ollama", "LlamaIndex"]
+  },
+  {
     company: 'Messen Labs',
     position: 'Full Stack Developer Intern',
     period: 'June 2024 - July 2024',
