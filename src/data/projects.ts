@@ -20,6 +20,24 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: 'Metafog - Decentralized AI Search Platform',
+    description: 'A decentralized AI search platform with real-time web crawling and LLM summarization.',
+    longDescription: 'A comprehensive decentralized AI search platform featuring high-performance APIs, real-time web crawling for accurate data retrieval, and LLM integration for intelligent summarization. Built with scalable infrastructure using Docker and Nginx.',
+    tech: ['Next.js', 'Docker', 'Nginx', 'Ollama', 'LlamaIndex'],
+    image: 'metafog.jpg',
+    features: [
+      'High-performance API for decentralized web search',
+      'Real-time web crawling for accurate data retrieval',
+      'LLM integration for intelligent content summarization',
+      'Scalable provider infrastructure with Docker and Nginx',
+      'Full-stack development with modern technologies'
+    ],
+    demoUrl: 'https://metafog.io/',
+    // githubUrl: '', // Add GitHub URL when available
+    featured: true,
+    notCompleted: false
+  },
+  {
     title: 'BiasBalance',
     description: 'A dataset bias detection and augmentation tool.',
     longDescription: 'A Streamlit-based web application for analyzing categorical data, detecting bias, performing independence testing, and augmenting data with AI.',

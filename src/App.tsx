@@ -36,11 +36,11 @@ function AppContent() {
               <section id="home" className="min-h-screen md:min-h-[70vh]">
                 <HomePage />
               </section>
-              <section id="projects" className="min-h-screen md:min-h-[50vh]">
-                <FeaturedProjects />
-              </section>
               <section id="experience" className="min-h-screen md:min-h-[50vh]">
                 <ExperiencePage />
+              </section>
+              <section id="projects" className="min-h-screen md:min-h-[50vh]">
+                <FeaturedProjects />
               </section>
               <section id="blog" className={`min-h-[30vh] ${isBlogEmpty ? 'md:min-h-[10vh]' : 'md:min-h-[50vh]'}`}>
                 <BlogPage />

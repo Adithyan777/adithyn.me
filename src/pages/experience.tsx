@@ -3,16 +3,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 
 const experiences = [
   {
-    company: 'Metafog',
-    position: 'Lead Software Engineer',
-    period: 'January 2025 - Present',
+    company: 'QpiAI',
+    position: 'AI Product Developer Intern',
+    period: 'June 2025 - July 2025',
     description: [
-        "Designed and developed frontend, backend, and infrastructure for a decentralized AI search platform.",
-        "Built a high-performance API for decentralized web search, integrating real-time web crawling for accurate data and LLMs for summarization.",
-        "Engineered the provider infrastructure using Docker and Nginx, ensuring scalability and resilience.",
-        "Worked in a startup-like environment, owning the full development lifecycle while collaborating on ideas."
-      ],
-    technologies: ["Next.js", "Docker", "Nginx", "Ollama", "LlamaIndex"]
+      "Developed internal tools and PoC use cases on QpiAI's Agent Hive platform, focusing on agent-based automation for lead intelligence and outreach",
+      'Delivered a complete sales support agent used internally, resulting in measurable improvements in research efficiency and personalization quality',
+      'Designed user-friendly interfaces and supported deployment for internal teams',
+      'Integrated state-of-the-art LLM APIs and internal SLMs to enhance decision-making and outreach relevance'
+    ],
+    technologies: ['Python', 'QpiAI Agent Hive', 'Streamlit', 'BeautifulSoup', 'Selenium', 'CSV I/O']
   },
   {
     company: 'Messen Labs',

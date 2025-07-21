@@ -21,6 +21,9 @@ const skills = {
     'LLM Integration', 'Prompt Engineering',
     'Structured Output Handling', 'AI Automation'
   ],
+  // 'Automation Platforms': [
+  //  'n8n', 'Langflow',
+  // ],
   'Databases': ['PostgreSQL', 'MongoDB'],
   'DevOps & Tools': [
     'Docker', 'Docker Compose', 'Git', 'GitHub Actions',

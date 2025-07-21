@@ -3,8 +3,8 @@ import { scrollToSection } from '@/lib/scroll-utils';
 
 const links = [
   { href: '#home', label: 'Home' },
-  { href: '#projects', label: 'Projects' },
   { href: '#experience', label: 'Experience' },
+  { href: '#projects', label: 'Projects' },
   { href: '#blog', label: 'Blog' },
   { href: '#beyond-code', label: 'Beyond Code'},
   { href: '#contact', label: 'Contact' },
