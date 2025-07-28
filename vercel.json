@@ -1,5 +1,4 @@
 {
-    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
     "redirects": [
         {
             "source": "/linkedin",
@@ -15,6 +14,12 @@
             "source": "/github",
             "destination": "https://github.com/Adithyan777",
             "permanent": true
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/((?!api/).*)",
+            "destination": "/"
         }
     ]
 }
