@@ -1,3 +1,17 @@
 {
-    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]
+    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
+    "redirects" : [
+        {
+            "source" : "/linkedin",
+            "destination" : "https://www.linkedin.com/in/adithyan-krishnan-1b32bb290'"
+        },
+        {
+            "source" : "/twitter",
+            "destination" : "https://x.com/adithyn_krshna"
+        },
+        {
+            "source" : "/github",
+            "destination" : "https://github.com/Adithyan777"
+        }
+    ]
 }
