@@ -38,6 +38,24 @@ export const projects: Project[] = [
     notCompleted: false
   },
   {
+    title: 'ArXiv RAG System - AI-Powered Research Assistant',
+    description: 'An AI-powered research assistant enabling semantic search, Q&A, and paper analysis over ArXiv research papers.',
+    longDescription: 'A comprehensive Retrieval Augmented Generation (RAG) system designed for ArXiv research papers, featuring automated PDF ingestion, fine-tuned domain-specific LLMs, and multi-provider inference. Built with LangChain, Qdrant, and Streamlit, the system enables intelligent semantic search, targeted question answering, and deep paper exploration.',
+    tech: ['LangChain', 'Qdrant', 'Docling', 'Unsloth', 'Hugging Face', 'Ollama', 'Streamlit', 'Docker', 'Python'],
+    image: 'arxiv-rag.jpg',
+    features: [
+      'Built a LangChain + Qdrant RAG pipeline for semantic search and contextual Q&A',
+      'Automated data ingestion and processing using Docling for PDF parsing and content extraction',
+      'Fine-tuned Qwen 8B & 14B models using Unsloth + QLoRA for domain-specific responses',
+      'Integrated multiple LLM providers (LMStudio, OpenRouter, IO.NET) for flexible generation',
+      'Interactive Streamlit UI for global Q&A and targeted paper exploration',
+      'Deployed using Docker Compose for seamless orchestration of vector DB and inference services'
+    ],
+    githubUrl: 'https://github.com/Adithyan777/arxiv-rag',
+    featured: true,
+    notCompleted: false
+  },
+  {
     title: 'BiasBalance',
     description: 'A dataset bias detection and augmentation tool.',
     longDescription: 'A Streamlit-based web application for analyzing categorical data, detecting bias, performing independence testing, and augmenting data with AI.',
