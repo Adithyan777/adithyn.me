@@ -8,26 +8,61 @@ import { scrollToSection } from '@/lib/scroll-utils';
 // const resumeLink = "https://drive.google.com/file/d/1o2spqn1kc4i3bFTkqp_KwQDwSWmghBhR/view?usp=sharing"
 
 const skills = {
-  'Programming Languages': ['Python', 'JavaScript', 'TypeScript', 'Java', 'C', 'SQL', 'HTML', 'CSS'],
+  'Programming Languages': [
+    { name: 'Python', frequentlyUsed: true },
+    { name: 'JavaScript'},
+    { name: 'TypeScript', frequentlyUsed: true },
+    { name: 'Java', frequentlyUsed: false },
+    { name: 'C', frequentlyUsed: false },
+    { name: 'SQL'},
+    { name: 'HTML'},
+    { name: 'CSS', frequentlyUsed: false }
+  ],
   'Frameworks & Libraries': [
-    'React', 'Next.js', 'Express.js', 'Node.js', 'Zustand',
-    'Drizzle ORM', 'LangChain', 'AutoGen', 'Typer', 'Rich', 'Streamlit'
+    { name: 'React', frequentlyUsed: true },
+    { name: 'Next.js', frequentlyUsed: true },
+    { name: 'Express.js', frequentlyUsed: true },
+    { name: 'Node.js', frequentlyUsed: true },
+    { name: 'Zustand'},
+    { name: 'Drizzle ORM'},
+    { name: 'Prisma ORM', frequentlyUsed: true },
+    { name: 'LangChain', frequentlyUsed: true },
+    { name: 'AutoGen', frequentlyUsed: false },
+    { name: 'Mastra', frequentlyUsed: true },
+    { name: 'Streamlit', frequentlyUsed: true }
   ],
   'AI/ML': [
-    'Core ML Concepts', 'Pandas', 'NumPy', 'Scikit-learn',
-    'Data Preprocessing', 'Model Evaluation','OpenCV'
+    { name: 'Core ML Concepts', frequentlyUsed: true },
+    { name: 'Pandas', frequentlyUsed: true },
+    { name: 'NumPy', frequentlyUsed: true },
+    { name: 'Scikit-learn'},
+    { name: 'Data Preprocessing', frequentlyUsed: true },
+    { name: 'Model Evaluation', frequentlyUsed: true },
+    { name: 'OpenCV', frequentlyUsed: false }
   ],
   'GenAI': [
-    'LLM Integration', 'Prompt Engineering',
-    'Structured Output Handling', 'AI Automation'
+    { name: 'LLM Integration', frequentlyUsed: true },
+    { name: 'Context Enginnering', frequentlyUsed: true },
+    { name: 'Structured Output Handling', frequentlyUsed: true },
+    { name: 'AI Automation', frequentlyUsed: true },
   ],
   // 'Automation Platforms': [
   //  'n8n', 'Langflow',
   // ],
-  'Databases': ['PostgreSQL', 'MongoDB'],
+  'Databases': [
+    { name: 'PostgreSQL', frequentlyUsed: true },
+    { name: 'MongoDB', frequentlyUsed: false },
+    { name: 'ChromaDB', frequentlyUsed: true },
+    { name: 'Qdrant', frequentlyUsed: true },
+  ],
   'DevOps & Tools': [
-    'Docker', 'Docker Compose', 'Git', 'GitHub Actions',
-    'Google Cloud Platform', 'Vercel', 'Vite'
+    { name: 'Docker', frequentlyUsed: true },
+    { name: 'Docker Compose', frequentlyUsed: true },
+    { name: 'Git', frequentlyUsed: true },
+    { name: 'GitHub Actions'},
+    { name: 'Google Cloud Platform'},
+    { name: 'Vercel'},
+    { name: 'Vite', frequentlyUsed: true }
   ]
 };
 
@@ -230,16 +265,20 @@ export function HomePage() {
                 <div className="flex flex-wrap gap-2">
                   {categorySkills.map((skill) => (
                     <motion.div
-                      key={skill}
+                      key={skill.name}
                       variants={item}
                       whileHover={{ scale: 1.05 }}
                       className="transition-colors"
                     >
                       <Badge
-                        variant="secondary"
-                        className="text-sm hover:bg-primary hover:text-primary-foreground cursor-default"
+                        variant={skill.frequentlyUsed ? "default" : "secondary"}
+                        className={`text-sm hover:bg-primary hover:text-primary-foreground cursor-default ${
+                          skill.frequentlyUsed 
+                            ? "bg-primary text-primary-foreground" 
+                            : ""
+                        }`}
                       >
-                        {skill}
+                        {skill.name}
                       </Badge>
                     </motion.div>
                   ))}
