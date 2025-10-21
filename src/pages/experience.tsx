@@ -1,7 +1,29 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-const experiences = [
+type Experience = {
+  company: string;
+  position: string;
+  period: string;
+  description: string[];
+  technologies: string[];
+  link?: string;
+};
+
+const experiences: Experience[] = [
+  {
+    company: 'Lifie',
+    position: 'Co-Founder & Lead AI Product Developer',
+    period: 'August 2025 - Present',
+    description: [
+      'Building the core AI infrastructure for Lifie — an autonomous commerce platform with products like Lifie Agents and Lifie Hub',
+      'Designed and implemented the complete LLM layer covering tool orchestration, context management, retrieval grounding, and guardrail systems for reliable agent behavior',
+      'Developed the Lifie MCP server to enable discovery and interoperability of A2A (Agent-to-Agent) agents across the ecosystem',
+      'Leading end-to-end AI system architecture, from model routing and retrieval grounding to production-ready agent orchestration and evaluation frameworks'
+    ],
+    technologies: ['Typescript', 'Mastra', 'Groq', 'FastEmbed', 'PostgreSQL', 'Docker', "AI SDK", "ExpressJS", "ChromaDB"],
+    link: 'https://lifie.ai'
+  },  
   {
     company: 'QpiAI',
     position: 'AI Product Developer Intern',
@@ -12,7 +34,8 @@ const experiences = [
       'Designed user-friendly interfaces and supported deployment for internal teams',
       'Integrated state-of-the-art LLM APIs and internal SLMs to enhance decision-making and outreach relevance'
     ],
-    technologies: ['Python', 'QpiAI Agent Hive', 'Streamlit', 'BeautifulSoup', 'Selenium', 'CSV I/O']
+    technologies: ['Python', 'QpiAI Agent Hive', 'Streamlit', 'BeautifulSoup', 'Selenium', 'CSV I/O'],
+    link: 'https://qpiai.tech/'
   },
   {
     company: 'Messen Labs',
@@ -24,7 +47,8 @@ const experiences = [
       'Implemented a three-tier user privilege system',
       'Dockerized Next.js app and PostgreSQL database, deployed on Google Cloud VM'
     ],
-    technologies: ['Next.js', 'Docker', 'PostgreSQL', 'Google Cloud', 'DrizzleORM']
+    technologies: ['Next.js', 'Docker', 'PostgreSQL', 'Google Cloud', 'DrizzleORM'],
+    link : 'https://messenlabs.com/'
   },
   {
     company: 'Messen Controls LLC',
@@ -103,7 +127,20 @@ export function ExperiencePage() {
               <CardHeader>
                 <CardTitle className='text-2xl'>{experience.position}</CardTitle>
                 <CardDescription>
-                  <span className='font-bold'> {experience.company} </span> • {experience.period}
+                  {' '}
+                  {experience.link ? (
+                    <a
+                      href={experience.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-bold underline underline-offset-2 decoration-muted-foreground/40 hover:decoration-current"
+                    >
+                      {experience.company}
+                    </a>
+                  ) : (
+                    <span className='font-bold'>{experience.company}</span>
+                  )}
+                  {' '}• {experience.period}
                   </CardDescription>
               </CardHeader>
               <CardContent>

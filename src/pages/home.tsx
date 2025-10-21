@@ -32,13 +32,15 @@ const skills = {
 };
 
 const about_me = [
-  `Hey there! I'm Adithyan, a 3rd-year Computer Science undergrad specializing in AI and ML, with a passion for building impactful solutions at the intersection of software engineering and AI.`,
-  "With experience spanning full-stack development, DevOps, and AI-driven automation, I've worked on diverse projects that demonstrate my versatility and problem-solving skills. From creating scalable web applications using modern frameworks to developing intelligent GenAI tools with advanced LLM APIs, I'm always striving for solutions that stand out for being both innovative and reliable.",
-  "Combining technical depth with hands-on experience, I thrive in crafting solutions that enhance efficiency and solve complex problems. Whether you're looking for someone to build robust software systems, automate workflows, or tackle AI-driven challenges, I'm here to add value to your team with a creative, collaborative, and detail-oriented approach."
+  `Hey, I’m Adithyan — a final-year CSE (AI) undergrad driven by one goal: to build AI systems that actually ship, scale, and make sense in production.`,
+  "My work focuses on agentic infrastructure, LLM orchestration, and intelligent backends — turning abstract AI capabilities into reliable, autonomous systems.",
+  "I’ve led the AI product layer at Lifie, where we’re building the foundation for autonomous commerce through agent frameworks, context engines, and guardrailed reasoning protocols.",
+  "Beyond that, I’ve built developer tools, dataset bias detection systems, and adaptive knowledge agents — each project pushing a bit closer to machines that can reason, act, and learn responsibly.",
+  "I like sitting where deep tech meets practicality — designing systems that balance speed, safety, and intelligence to move real products forward."
 ];
 
 const details = {
-  'Hero Line': "From building robust full-stack applications to crafting innovative GenAI tools, I'm all in for the challenge of translating ideas into meaningful solutions.",
+  'Hero Line': "Building the intelligence layer for products that work reliably in the real world.",
   'About Me': about_me
 }
 
@@ -128,7 +130,7 @@ export function HomePage() {
             <Button 
               variant="default" 
               size="lg" 
-              onClick={() => scrollToSection('#projects')}
+              onClick={() => scrollToSection('#experience')}
             >
               <Terminal className="mr-2 h-4 w-4" />
               View Work
