@@ -18,19 +18,23 @@ export interface Project {
   coldReboot?: boolean;
 }
 
+/*
+Metafog is a decentralized AI search platform that revolutionizes how AI-powered search is delivered. Built on a distributed network of providers who contribute GPU resources for LLM inference and bandwidth for search operations, Metafog creates a truly decentralized ecosystem for AI search capabilities. The platform offers high-performance APIs for developers to integrate AI search into their applications, while ensuring scalability, reliability, and cost-effectiveness through its distributed architecture. By leveraging the collective power of decentralized providers, Metafog eliminates single points of failure and creates a more resilient, accessible AI search infrastructure.
+*/
+
 export const projects: Project[] = [
   {
     title: 'Metafog - Decentralized AI Search Platform',
-    description: 'A decentralized AI search platform with real-time web crawling and LLM summarization.',
-    longDescription: 'A comprehensive decentralized AI search platform featuring high-performance APIs, real-time web crawling for accurate data retrieval, and LLM integration for intelligent summarization. Built with scalable infrastructure using Docker and Nginx.',
-    tech: ['Next.js', 'Docker', 'Nginx', 'Ollama', 'LlamaIndex'],
+    description: 'A decentralized AI search platform powered by distributed GPU providers and bandwidth contributors.',
+    longDescription: 'A decentralized AI search platform built on distributed network of providers who contribute GPU resources for LLM inference and bandwidth for search operations. The platform offers high-performance APIs, real-time web crawling for accurate data retrieval, and LLM integration for intelligent summarization. Built with scalable infrastructure using Docker and Nginx',
+    tech: ['Next.js', 'Docker', 'Nginx', 'Ollama', 'LlamaIndex', 'Netbird', 'SearXNG'],
     image: 'metafog.jpg',
     features: [
-      'High-performance API for decentralized web search',
-      'Real-time web crawling for accurate data retrieval',
-      'LLM integration for intelligent content summarization',
-      'Scalable provider infrastructure with Docker and Nginx',
-      'Full-stack development with modern technologies'
+      'Decentralized provider network for GPU and bandwidth contribution',
+      'High-performance API for developers to integrate AI search capabilities',
+      'Real-time web crawling with decentralized bandwidth allocation',
+      'Scalable infrastructure using Docker containerization and Nginx load balancing',
+      'Fault-tolerant architecture with automatic failover mechanisms',
     ],
     demoUrl: 'https://metafog.io/',
     // githubUrl: '', // Add GitHub URL when available
@@ -87,7 +91,7 @@ export const projects: Project[] = [
     ],
     demoUrl: 'https://kanban-frontend-4iqd.vercel.app/', 
     githubUrl: 'https://github.com/Adithyan777/kanban-frontend',
-    featured: true,
+    featured: false,
     testCredentials: {
       email: "test@gmail.com",
       password: "12345678"
