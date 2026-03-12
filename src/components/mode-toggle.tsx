@@ -2,15 +2,22 @@ import { Moon, Sun } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/components/theme-provider';
+import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 export function ModeToggle() {
   const { setTheme, theme } = useTheme();
+
+  const handleToggle = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    trackEvent(AnalyticsEvents.THEME_TOGGLE, { theme: newTheme });
+    setTheme(newTheme);
+  };
 
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      onClick={handleToggle}
       className="mode-toggle"
     >
       <motion.div

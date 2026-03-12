@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { trackEvent, trackOutboundClick, AnalyticsEvents } from '@/lib/analytics';
 
 const socialLinks = [
   {
@@ -24,6 +25,11 @@ const socialLinks = [
 ];
 
 export function SocialLinks() {
+  const handleClick = (social: typeof socialLinks[number]) => {
+    trackEvent(AnalyticsEvents.SOCIAL_CLICK, { platform: social.label });
+    trackOutboundClick(social.href, social.label);
+  };
+
   return (
     <div className="flex flex-wrap gap-4">
       {socialLinks.map((social, index) => {
@@ -51,6 +57,7 @@ export function SocialLinks() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
+                onClick={() => handleClick(social)}
               >
                 <Icon className="h-5 w-5" />
               </a>

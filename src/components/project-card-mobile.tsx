@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ProjectCardProps } from './project-card';
+import { trackEvent, trackOutboundClick, AnalyticsEvents } from '@/lib/analytics';
 
 function getImagePath(imagePath: string): string {
   if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
@@ -103,11 +104,17 @@ export function ProjectCardMobile({ project, index, variant = 'default' }: Proje
           <div className="flex gap-4">
             {project.demoUrl && (
               <Button asChild>
-                <a 
-                  href={project.demoUrl} 
-                  target="_blank" 
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => handleDemoClick(e, project.demoUrl!)}
+                  onClick={(e) => {
+                    trackEvent(AnalyticsEvents.PROJECT_CLICK, { project: project.title, type: 'demo' });
+                    if (!project.coldReboot) {
+                      trackOutboundClick(project.demoUrl!, project.title);
+                    }
+                    handleDemoClick(e, project.demoUrl!);
+                  }}
                 >
                   View Demo
                 </a>
@@ -115,7 +122,15 @@ export function ProjectCardMobile({ project, index, variant = 'default' }: Proje
             )}
             {project.githubUrl && (
               <Button variant="outline" asChild>
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    trackEvent(AnalyticsEvents.PROJECT_CLICK, { project: project.title, type: 'github' });
+                    trackOutboundClick(project.githubUrl!, project.title);
+                  }}
+                >
                   View Code
                 </a>
               </Button>

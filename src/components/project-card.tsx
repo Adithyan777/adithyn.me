@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Project } from '@/data/projects';
+import { trackEvent, trackOutboundClick, AnalyticsEvents } from '@/lib/analytics';
 
 export interface ProjectCardProps {
   project: Project;
@@ -116,11 +117,17 @@ export function ProjectCard({ project, index, variant = 'default' }: ProjectCard
           <div className="flex gap-4 mt-auto">
             {project.demoUrl && (
               <Button asChild>
-                <a 
-                  href={project.demoUrl} 
-                  target="_blank" 
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => handleDemoClick(e, project.demoUrl!)}
+                  onClick={(e) => {
+                    trackEvent(AnalyticsEvents.PROJECT_CLICK, { project: project.title, type: 'demo' });
+                    if (!project.coldReboot) {
+                      trackOutboundClick(project.demoUrl!, project.title);
+                    }
+                    handleDemoClick(e, project.demoUrl!);
+                  }}
                 >
                   View Demo
                 </a>
@@ -128,7 +135,15 @@ export function ProjectCard({ project, index, variant = 'default' }: ProjectCard
             )}
             {project.githubUrl && (
               <Button variant="outline" asChild>
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    trackEvent(AnalyticsEvents.PROJECT_CLICK, { project: project.title, type: 'github' });
+                    trackOutboundClick(project.githubUrl!, project.title);
+                  }}
+                >
                   View Code
                 </a>
               </Button>

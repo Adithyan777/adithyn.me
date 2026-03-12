@@ -3,22 +3,35 @@ import { Navbar } from '@/components/navbar';
 import { motion } from 'framer-motion';
 import { HomePage } from '@/pages/home';
 import { ExperiencePage } from '@/pages/experience';
-import { BlogPage, isBlogEmpty } from '@/pages/blog';
+import { BlogPage } from '@/pages/blog';
 import { ContactPage } from '@/pages/contact';
 import { FeaturedProjects } from './pages/featured-projects';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { ProjectsPage } from './pages/all-projects';
 import { BeyondCode } from './pages/beyond-code';
 import { LoadingPage } from './pages/loading';
-import posthog from 'posthog-js';
 import { useEffect } from 'react';
+import { siteConfig } from '@/config/site';
+import { SEO } from '@/components/seo';
+import { trackEvent, captureUTMParams } from '@/lib/analytics';
+import { useSectionTrack } from '@/hooks/use-section-track';
 
 function AppContent() {
   const location = useLocation();
   const showNavbar = !['/projects', '/loading'].includes(location.pathname);
 
+  const homeRef = useSectionTrack('home');
+  const experienceRef = useSectionTrack('experience');
+  const projectsRef = useSectionTrack('projects');
+  const beyondCodeRef = useSectionTrack('beyond-code');
+  const contactRef = useSectionTrack('contact');
+
   useEffect(() => {
-    posthog.capture('$pageview');
+    captureUTMParams();
+  }, []);
+
+  useEffect(() => {
+    trackEvent('$pageview', { path: location.pathname, search: location.search });
   }, [location]);
 
   return (
@@ -33,28 +46,41 @@ function AppContent() {
         <Routes>
           <Route path="/" element={
             <>
-              <section id="home" className="min-h-screen md:min-h-[70vh]">
+              <SEO />
+              <section ref={homeRef} id="home" className="min-h-screen md:min-h-[70vh]">
                 <HomePage />
               </section>
-              <section id="experience" className="min-h-screen md:min-h-[50vh]">
+              <section ref={experienceRef} id="experience" className="min-h-screen md:min-h-[50vh]">
                 <ExperiencePage />
               </section>
-              <section id="projects" className="min-h-screen md:min-h-[50vh]">
+              <section ref={projectsRef} id="projects" className="min-h-screen md:min-h-[50vh]">
                 <FeaturedProjects />
               </section>
-              <section id="blog" className={`min-h-[30vh] ${isBlogEmpty ? 'md:min-h-[10vh]' : 'md:min-h-[50vh]'}`}>
-                <BlogPage />
-              </section>
-              <section id="beyond-code" className="min-h-screen md:min-h-[50vh]">
+              {siteConfig.features.blog && (
+                <section id="blog" className="min-h-[30vh] md:min-h-[50vh]">
+                  <BlogPage />
+                </section>
+              )}
+              <section ref={beyondCodeRef} id="beyond-code" className="min-h-screen md:min-h-[50vh]">
                 <BeyondCode />
               </section>
-              <section id="contact" className="min-h-screen md:min-h-[50vh]">
+              <section ref={contactRef} id="contact" className="min-h-screen md:min-h-[50vh]">
                 <ContactPage />
               </section>
             </>
           }/>
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/loading" element={<LoadingPage />} />
+          <Route path="/projects" element={
+            <>
+              <SEO title="Projects" description="Projects by Adithyan K — AI systems, developer tools, and full-stack applications." path="/projects" />
+              <ProjectsPage />
+            </>
+          } />
+          <Route path="/loading" element={
+            <>
+              <SEO title="Loading" noindex path="/loading" />
+              <LoadingPage />
+            </>
+          } />
         </Routes>
       </main>
     </motion.div>

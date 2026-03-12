@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useRef } from 'react';
 import { scrollToSection } from '@/lib/scroll-utils';
+import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 // const resumeLink = "https://drive.google.com/file/d/1o2spqn1kc4i3bFTkqp_KwQDwSWmghBhR/view?usp=sharing"
 
@@ -186,11 +187,12 @@ export function HomePage() {
               size="default"
               asChild
             >
-              <a 
-              href="/resume.pdf" 
-              target="_blank" 
+              <a
+              href="/resume.pdf"
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center"
+              onClick={() => trackEvent(AnalyticsEvents.RESUME_DOWNLOAD)}
               >
               <FileText className="mr-2 h-4 w-4" />
               Resume
