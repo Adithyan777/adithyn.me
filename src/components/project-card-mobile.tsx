@@ -57,11 +57,11 @@ export function ProjectCardMobile({ project, index, variant = 'default' }: Proje
 
         {project.image && (
           <div className="px-6 pb-6">
-            <div className="relative w-full h-56 overflow-hidden rounded-lg border">
-              <img 
-                src={getImagePath(project.image)} 
+            <div className="relative w-full overflow-hidden rounded-lg border bg-muted/50">
+              <img
+                src={getImagePath(project.image)}
                 alt={project.title}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>

@@ -5,18 +5,18 @@ import { Badge } from '@/components/ui/badge';
 import { useRef } from 'react';
 import { scrollToSection } from '@/lib/scroll-utils';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
-
-// const resumeLink = "https://drive.google.com/file/d/1o2spqn1kc4i3bFTkqp_KwQDwSWmghBhR/view?usp=sharing"
+import { contentConfig, is } from '@/data/config';
 
 const skills = {
   'Programming Languages': [
     { name: 'Python', frequentlyUsed: true },
-    { name: 'JavaScript'},
+    { name: 'JavaScript' },
     { name: 'TypeScript', frequentlyUsed: true },
+    { name: 'Go', frequentlyUsed: false },
     { name: 'Java', frequentlyUsed: false },
     { name: 'C', frequentlyUsed: false },
-    { name: 'SQL'},
-    { name: 'HTML'},
+    { name: 'SQL' },
+    { name: 'HTML' },
     { name: 'CSS', frequentlyUsed: false }
   ],
   'Frameworks & Libraries': [
@@ -24,8 +24,8 @@ const skills = {
     { name: 'Next.js', frequentlyUsed: true },
     { name: 'Express.js', frequentlyUsed: true },
     { name: 'Node.js', frequentlyUsed: true },
-    { name: 'Zustand'},
-    { name: 'Drizzle ORM'},
+    { name: 'Zustand' },
+    { name: 'Drizzle ORM' },
     { name: 'Prisma ORM', frequentlyUsed: true },
     { name: 'LangChain', frequentlyUsed: true },
     { name: 'AutoGen', frequentlyUsed: false },
@@ -36,20 +36,17 @@ const skills = {
     { name: 'Core ML Concepts', frequentlyUsed: true },
     { name: 'Pandas', frequentlyUsed: true },
     { name: 'NumPy', frequentlyUsed: true },
-    { name: 'Scikit-learn'},
+    { name: 'Scikit-learn' },
     { name: 'Data Preprocessing', frequentlyUsed: true },
     { name: 'Model Evaluation', frequentlyUsed: true },
     { name: 'OpenCV', frequentlyUsed: false }
   ],
-  'GenAI': [
+  'AI Engineering': [
     { name: 'LLM Integration', frequentlyUsed: true },
-    { name: 'Context Enginnering', frequentlyUsed: true },
+    { name: 'Context Engineering', frequentlyUsed: true },
     { name: 'Structured Output Handling', frequentlyUsed: true },
     { name: 'AI Automation', frequentlyUsed: true },
   ],
-  // 'Automation Platforms': [
-  //  'n8n', 'Langflow',
-  // ],
   'Databases': [
     { name: 'PostgreSQL', frequentlyUsed: true },
     { name: 'MongoDB', frequentlyUsed: false },
@@ -60,25 +57,31 @@ const skills = {
     { name: 'Docker', frequentlyUsed: true },
     { name: 'Docker Compose', frequentlyUsed: true },
     { name: 'Git', frequentlyUsed: true },
-    { name: 'GitHub Actions'},
-    { name: 'Google Cloud Platform'},
-    { name: 'Vercel'},
+    { name: 'GitHub Actions' },
+    { name: 'Google Cloud Platform' },
+    { name: 'Vercel' },
     { name: 'Vite', frequentlyUsed: true }
   ]
 };
 
-const about_me = [
-  `Hey, I’m Adithyan — a final-year CSE (AI) undergrad driven by one goal: to build AI systems that actually ship, scale, and make sense in production.`,
-  "My work focuses on agentic infrastructure, LLM orchestration, and intelligent backends — turning abstract AI capabilities into reliable, autonomous systems.",
-  "I’ve led the AI product layer at Lifie, where we’re building the foundation for autonomous commerce through agent frameworks, context engines, and guardrailed reasoning protocols.",
-  "Beyond that, I’ve built developer tools, dataset bias detection systems, and adaptive knowledge agents — each project pushing a bit closer to machines that can reason, act, and learn responsibly.",
-  "I like sitting where deep tech meets practicality — designing systems that balance speed, safety, and intelligence to move real products forward."
-];
+function getAboutMe(): string[] {
+  const intro = "Hey, I'm Adithyan \u2014 an AI engineer who builds systems that actually ship and work in production.";
+  const focus = "I spend most of my time at the intersection of LLMs and real products \u2014 building intelligence layers, orchestration systems, and backends that turn AI capabilities into something reliable and useful.";
+
+  const thirdParagraph: Record<typeof contentConfig.mode, string> = {
+    default: "Right now I'm building AI products at SuperAGI and co-founding Lifie, where we're making voice and chat AI for businesses.",
+    hidingLifie: "Right now I'm building AI products at SuperAGI \u2014 an AI native platform for sales, marketing, and support automation for enterprise teams.",
+    replaceSuperAGI: "I recently built AI products at SuperAGI and I'm co-founding Lifie, where we're building voice and chat AI for businesses.",
+    postSuperagi: "I'm co-founding Lifie, where we're building voice and chat AI for businesses.",
+    jobHunting: "I've built AI products at SuperAGI and co-founded Lifie, a voice and chat AI platform for businesses.",
+  };
+
+  return [intro, focus, thirdParagraph[contentConfig.mode]];
+}
 
 const details = {
   'Hero Line': "Building the intelligence layer for products that work reliably in the real world.",
-  'About Me': about_me
-}
+};
 
 const container = {
   hidden: { opacity: 0 },
@@ -116,15 +119,17 @@ export function HomePage() {
         >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <div className="space-y-2">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                <Badge variant="secondary" className="mb-4">
-                  Available for hire
-                </Badge>
-              </motion.div>
+              {is.showBadge() && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <Badge variant="secondary" className="mb-4">
+                    Open to opportunities
+                  </Badge>
+                </motion.div>
+              )}
               <h1 className="text-6xl font-bold leading-tight">
                 Hi, I'm{' '}
                 <span className="text-primary relative whitespace-nowrap">
@@ -142,38 +147,20 @@ export function HomePage() {
                 {details['Hero Line']}
               </p>
             </div>
-
-            {/* Code for Photo */}
-            {/* <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
-              className="relative w-[280px] h-[280px] mx-auto md:mx-0"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-primary/10 rounded-[2.5rem] rotate-6" />
-              <div className="absolute inset-0 bg-gradient-to-l from-primary/30 to-primary/10 rounded-[2.5rem] -rotate-6" />
-              <div className="relative w-full h-full rounded-[2rem] overflow-hidden border-2 border-primary/20">
-                <img
-                  src="/images/adithyan.jpg"
-                  alt="Adithyan K"
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-            </motion.div> */}
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <Button 
-              variant="default" 
-              size="lg" 
+            <Button
+              variant="default"
+              size="lg"
               onClick={() => scrollToSection('#experience')}
             >
               <Terminal className="mr-2 h-4 w-4" />
               View Work
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="lg"
               onClick={() => scrollToSection('#contact')}
             >
@@ -207,42 +194,15 @@ export function HomePage() {
             initial="hidden"
             animate={isAboutInView ? "show" : "hidden"}
           >
-            <motion.p
-              variants={item}
-              className="text-lg text-muted-foreground leading-relaxed"
-            >
-              {details['About Me'][0]}
-            </motion.p>
-            <br></br>
-            <motion.p
-              variants={item}
-              className="text-lg text-muted-foreground leading-relaxed"
-            >
-              {details['About Me'][1]}
-            </motion.p>
-            <br></br>
-            <motion.p
-              variants={item}
-              className="text-lg text-muted-foreground leading-relaxed"
-            >
-              {details['About Me'][2]}
-            </motion.p>
-            {/* <Button
-              variant="outline"
-              size="default"
-              className='mt-4'
-              asChild
-            >
-              <a 
-                href={resumeLink} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center"
+            {getAboutMe().map((paragraph, i) => (
+              <motion.p
+                key={i}
+                variants={item}
+                className={`text-lg text-muted-foreground leading-relaxed ${i > 0 ? 'mt-4' : ''}`}
               >
-                <FileText className="mr-2 h-4 w-4" />
-                Resume
-              </a>
-            </Button> */}
+                {paragraph}
+              </motion.p>
+            ))}
           </motion.div>
         </div>
 
@@ -275,8 +235,8 @@ export function HomePage() {
                       <Badge
                         variant={skill.frequentlyUsed ? "default" : "secondary"}
                         className={`text-sm hover:bg-primary hover:text-primary-foreground cursor-default ${
-                          skill.frequentlyUsed 
-                            ? "bg-primary text-primary-foreground" 
+                          skill.frequentlyUsed
+                            ? "bg-primary text-primary-foreground"
                             : ""
                         }`}
                       >

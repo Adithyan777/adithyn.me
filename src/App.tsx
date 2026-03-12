@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { ProjectsPage } from './pages/all-projects';
 import { BeyondCode } from './pages/beyond-code';
 import { LoadingPage } from './pages/loading';
+import { LifiePage } from './pages/lifie';
 import { useEffect } from 'react';
 import { siteConfig } from '@/config/site';
 import { SEO } from '@/components/seo';
@@ -18,7 +19,7 @@ import { useSectionTrack } from '@/hooks/use-section-track';
 
 function AppContent() {
   const location = useLocation();
-  const showNavbar = !['/projects', '/loading'].includes(location.pathname);
+  const showNavbar = !['/projects', '/loading', '/lifie'].includes(location.pathname);
 
   const homeRef = useSectionTrack('home');
   const experienceRef = useSectionTrack('experience');
@@ -73,6 +74,12 @@ function AppContent() {
             <>
               <SEO title="Projects" description="Projects by Adithyan K — AI systems, developer tools, and full-stack applications." path="/projects" />
               <ProjectsPage />
+            </>
+          } />
+          <Route path="/lifie" element={
+            <>
+              <SEO title="The Lifie Story" description="How a consumer AI assistant became a voice and chat platform for businesses — a case study by Adithyan K." path="/lifie" />
+              <LifiePage />
             </>
           } />
           <Route path="/loading" element={

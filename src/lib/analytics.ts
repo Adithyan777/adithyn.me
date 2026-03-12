@@ -8,6 +8,9 @@ export const AnalyticsEvents = {
   THEME_TOGGLE: 'theme_toggle',
   NAV_CLICK: 'nav_click',
   OUTBOUND_CLICK: 'outbound_click',
+  CASE_STUDY_VIEW: 'case_study_view',
+  CASE_STUDY_SECTION: 'case_study_section',
+  EXPERIENCE_COMPANY_CLICK: 'experience_company_click',
 } as const;
 
 export function trackEvent(event: string, properties?: Record<string, unknown>) {

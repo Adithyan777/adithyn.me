@@ -24,6 +24,23 @@ Metafog is a decentralized AI search platform that revolutionizes how AI-powered
 
 export const projects: Project[] = [
   {
+    title: 'cc-vault',
+    description: 'A lazygit-style TUI for browsing and managing Claude Code sessions.',
+    longDescription: 'A terminal UI built in Go for managing Claude Code sessions. Three-panel lazygit-style layout with full-text search, rename, delete, bulk operations, and markdown-rendered conversation preview. Reads local JSONL files directly with optimized partial reads for instant loading.',
+    tech: ['Go', 'Bubble Tea', 'Lip Gloss'],
+    image: 'cc-vault.jpg',
+    features: [
+      'Three-panel layout: projects, sessions, and markdown-rendered preview',
+      'Full-text search across all session content',
+      'Rename, delete, bulk delete, and prune empty sessions',
+      'Export sessions to clean markdown files',
+      'Press Enter to resume any session directly in Claude Code',
+    ],
+    githubUrl: 'https://github.com/Adithyan777/cc-vault',
+    featured: true,
+    notCompleted: false,
+  },
+  {
     title: 'Metafog - Decentralized AI Search Platform',
     description: 'A decentralized AI search platform powered by distributed GPU providers and bandwidth contributors.',
     longDescription: 'A decentralized AI search platform built on distributed network of providers who contribute GPU resources for LLM inference and bandwidth for search operations. The platform offers high-performance APIs, real-time web crawling for accurate data retrieval, and LLM integration for intelligent summarization. Built with scalable infrastructure using Docker and Nginx',
@@ -108,9 +125,9 @@ export const projects: Project[] = [
       'Real-time attendance tracking',
       'Live deployment on Vercel'
     ],
-    demoUrl: 'https://bunk-better.vercel.app/', 
+    demoUrl: 'https://bunk-better.vercel.app/',
     githubUrl: 'https://github.com/Adithyan777/bunk-better',
-    featured: true,
+    featured: false,
     testCredentials: {
       email: "test@gmail.com",
       password: "12345678"
