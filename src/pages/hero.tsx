@@ -1,0 +1,114 @@
+import { motion } from 'framer-motion';
+import { Container } from '@/components/section';
+import { LinkChips, type Chip } from '@/components/link-chips';
+import { siteConfig } from '@/config/site';
+import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
+
+const EMAIL = 'adithyn.krshna@gmail.com';
+
+const chips: Chip[] = [
+  {
+    mark: 'resume',
+    label: 'Résumé',
+    href: '/resume.pdf',
+    onClick: () => trackEvent(AnalyticsEvents.RESUME_DOWNLOAD, { link: 'Résumé' }),
+  },
+  {
+    mark: 'github',
+    label: 'GitHub',
+    href: siteConfig.social.github,
+    onClick: () => trackEvent(AnalyticsEvents.SOCIAL_CLICK, { link: 'GitHub' }),
+  },
+  {
+    mark: 'linkedin',
+    label: 'LinkedIn',
+    href: siteConfig.social.linkedin,
+    onClick: () => trackEvent(AnalyticsEvents.SOCIAL_CLICK, { link: 'LinkedIn' }),
+  },
+  {
+    mark: 'email',
+    label: 'Email',
+    href: `mailto:${EMAIL}`,
+    onClick: () => trackEvent(AnalyticsEvents.SOCIAL_CLICK, { link: 'Email' }),
+  },
+];
+
+/*
+  Hero and About are one block. A reader shouldn't meet your name and then hit
+  research papers with no idea who's behind them.
+
+  The only motion is a short entrance on load — once, on mount, never tied to
+  scroll position.
+*/
+const rise = {
+  hidden: { opacity: 0, y: 8 },
+  show: { opacity: 1, y: 0 },
+};
+
+export function Hero() {
+  return (
+    <Container className="pt-20 md:pt-28">
+      <motion.div
+        initial="hidden"
+        animate="show"
+        transition={{ staggerChildren: 0.07, delayChildren: 0.05 }}
+      >
+        <motion.p
+          variants={rise}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          className="meta mb-6 flex items-center gap-2.5"
+        >
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
+          </span>
+          Open to research and applied AI roles
+        </motion.p>
+
+        <motion.h1
+          variants={rise}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          className="max-w-[18ch] text-display font-semibold"
+        >
+          I build AI systems, and the tools that prove they work.
+        </motion.h1>
+
+        <motion.div
+          variants={rise}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          className="mt-6 max-w-prose space-y-4"
+        >
+          <p className="text-lead text-foreground/90">
+            I'm Adithyan — an AI research engineer at SuperAGI. I trained a 7B
+            model that reads a codebase before an agent tries to fix it, built
+            the retrieval layer inside our coding agent, and wrote the
+            evaluation platform that tells us whether any of it actually helped.
+          </p>
+          <p className="text-muted-foreground">
+            Two papers came out of that this year. Before the research work I
+            shipped the sandbox and deploy infrastructure behind SuperAGI's app
+            builder, and the backend for AI agents that join live meetings with
+            voice and avatar. On the side I co-founded{' '}
+            <a
+              href="https://lifie.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline text-foreground"
+            >
+              Lifie
+            </a>
+            , where we build voice and chat AI for businesses.
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={rise}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          className="mt-8"
+        >
+          <LinkChips chips={chips} />
+        </motion.div>
+      </motion.div>
+    </Container>
+  );
+}

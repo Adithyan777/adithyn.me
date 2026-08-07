@@ -1,18 +1,17 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import { Navbar } from '@/components/navbar';
 import { motion } from 'framer-motion';
-import { HomePage } from '@/pages/home';
+import { Hero } from '@/pages/hero';
+import { Research } from '@/pages/research';
+import { SelectedWork } from '@/pages/selected-work';
 import { ExperiencePage } from '@/pages/experience';
-import { BlogPage } from '@/pages/blog';
 import { ContactPage } from '@/pages/contact';
-import { FeaturedProjects } from './pages/featured-projects';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { ProjectsPage } from './pages/all-projects';
 import { BeyondCode } from './pages/beyond-code';
 import { LoadingPage } from './pages/loading';
 import { LifiePage } from './pages/lifie';
 import { useEffect } from 'react';
-import { siteConfig } from '@/config/site';
 import { SEO } from '@/components/seo';
 import { trackEvent, captureUTMParams } from '@/lib/analytics';
 import { useSectionTrack } from '@/hooks/use-section-track';
@@ -43,29 +42,25 @@ function AppContent() {
       transition={{ duration: 0.3 }}
     >
       {showNavbar && <Navbar />}
-      <main className={showNavbar ? "pt-16" : ""}>
+      <main className={showNavbar ? 'pt-14' : ''}>
         <Routes>
           <Route path="/" element={
             <>
               <SEO />
-              <section ref={homeRef} id="home" className="min-h-screen md:min-h-[70vh]">
-                <HomePage />
+              <section ref={homeRef} id="home">
+                <Hero />
               </section>
-              <section ref={experienceRef} id="experience" className="min-h-screen md:min-h-[50vh]">
+              <section ref={projectsRef}>
+                <Research />
+                <SelectedWork />
+              </section>
+              <section ref={experienceRef}>
                 <ExperiencePage />
               </section>
-              <section ref={projectsRef} id="projects" className="min-h-screen md:min-h-[50vh]">
-                <FeaturedProjects />
-              </section>
-              {siteConfig.features.blog && (
-                <section id="blog" className="min-h-[30vh] md:min-h-[50vh]">
-                  <BlogPage />
-                </section>
-              )}
-              <section ref={beyondCodeRef} id="beyond-code" className="min-h-screen md:min-h-[50vh]">
+              <section ref={beyondCodeRef}>
                 <BeyondCode />
               </section>
-              <section ref={contactRef} id="contact" className="min-h-screen md:min-h-[50vh]">
+              <section ref={contactRef}>
                 <ContactPage />
               </section>
             </>

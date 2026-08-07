@@ -1,41 +1,61 @@
 import { cn } from '@/lib/utils';
 import { scrollToSection } from '@/lib/scroll-utils';
-import { siteConfig } from '@/config/site';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
+import { useActiveSection } from '@/hooks/use-active-section';
 
-const links: { href: string; label: string; featureFlag?: keyof typeof siteConfig.features }[] = [
-  { href: '#home', label: 'Home' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#blog', label: 'Blog', featureFlag: 'blog' },
-  { href: '#beyond-code', label: 'Beyond Code'},
-  { href: '#contact', label: 'Contact' },
+const links = [
+  { id: 'research', label: 'Research' },
+  { id: 'work', label: 'Work' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'beyond-code', label: 'Beyond code' },
+  { id: 'contact', label: 'Contact' },
 ];
 
-export function NavLinks({ className }: { className?: string }) {
-  const visibleLinks = links.filter(l => !l.featureFlag || siteConfig.features[l.featureFlag]);
+const ids = links.map((link) => link.id);
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, label: string) => {
+export function NavLinks({ className }: { className?: string }) {
+  const active = useActiveSection(ids);
+
+  const handleClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string,
+    label: string
+  ) => {
     e.preventDefault();
     trackEvent(AnalyticsEvents.NAV_CLICK, { target: label });
-    scrollToSection(href);
+    scrollToSection(`#${id}`);
   };
 
   return (
-    <>
-      {visibleLinks.map((link) => (
-        <a
-          key={link.href}
-          href={link.href}
-          onClick={(e) => handleClick(e, link.href, link.label)}
-          className={cn(
-            'px-4 py-2 text-sm font-medium transition-colors hover:text-primary',
-            className
-          )}
-        >
-          {link.label}
-        </a>
-      ))}
-    </>
+    <nav className={cn('flex', className)}>
+      {links.map((link) => {
+        const isActive = active === link.id;
+        return (
+          <a
+            key={link.id}
+            href={`#${link.id}`}
+            aria-current={isActive ? 'true' : undefined}
+            onClick={(e) => handleClick(e, link.id, link.label)}
+            className={cn(
+              'relative py-1 text-small transition-colors duration-200',
+              isActive
+                ? 'text-foreground'
+                : 'text-muted-foreground hover:text-foreground'
+            )}
+          >
+            {link.label}
+            {/* Marks where you are. Fades rather than slides, so nothing
+                travels across the bar while you read. */}
+            <span
+              aria-hidden
+              className={cn(
+                'absolute -bottom-0.5 left-0 h-px w-full bg-primary transition-opacity duration-300',
+                isActive ? 'opacity-100' : 'opacity-0'
+              )}
+            />
+          </a>
+        );
+      })}
+    </nav>
   );
 }

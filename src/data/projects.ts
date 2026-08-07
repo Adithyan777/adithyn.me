@@ -1,169 +1,76 @@
-export interface TestCredentials {
-  email: string;
-  password: string;
-}
+import type { WorkItem } from '@/data/work';
 
-export interface Project {
+/* Independent projects that don't make the homepage cut but still stand up. */
+export const otherProjects: WorkItem[] = [
+  {
+    slug: 'metafog',
+    title: 'Metafog',
+    blurb:
+      'A decentralised AI search platform running on contributed GPU and bandwidth, with a developer API over the top.',
+    stack: ['Next.js', 'Ollama', 'LlamaIndex', 'SearXNG', 'Docker'],
+    period: '2025',
+    links: [{ label: 'Site', href: 'https://metafog.io/' }],
+  },
+  {
+    slug: 'arxiv-rag',
+    title: 'ArXiv RAG',
+    blurb:
+      'A research assistant over ArXiv papers — semantic search, targeted Q&A, and a fine-tuned Qwen model for domain answers.',
+    stack: ['LangChain', 'Qdrant', 'Unsloth', 'Docling', 'Streamlit'],
+    period: '2025',
+    links: [{ label: 'Code', href: 'https://github.com/Adithyan777/arxiv-rag' }],
+  },
+  {
+    slug: 'biasbalance',
+    title: 'BiasBalance',
+    blurb:
+      'Detects bias in categorical datasets with chi-squared and independence testing, then rebalances them with generated data.',
+    stack: ['Streamlit', 'Pydantic', 'OpenAI'],
+    period: '2024',
+    links: [
+      { label: 'Demo', href: 'https://biasbalance.onrender.com/' },
+      { label: 'Code', href: 'https://github.com/Adithyan777/BiasBalance' },
+    ],
+  },
+  {
+    slug: 'code-catalyst',
+    title: 'CodeCatalyst',
+    blurb:
+      'A CLI that sets up a development environment from a description, using agents to resolve toolchains and dependencies.',
+    stack: ['Python', 'AutoGen', 'Typer', 'Docker'],
+    period: '2024',
+    links: [{ label: 'Code', href: 'https://github.com/Adithyan777/code-catalyst' }],
+  },
+];
+
+export type ArchivedProject = {
   title: string;
-  description: string;
-  tech: string[];
-  image: string;
-  longDescription?: string;
-  features?: string[];
-  demoUrl?: string;
-  githubUrl?: string;
-  featured?: boolean;
-  notCompleted?: boolean;
-  testCredentials?: TestCredentials;
-  coldReboot?: boolean;
-}
+  blurb: string;
+  year: string;
+  href?: string;
+};
 
 /*
-Metafog is a decentralized AI search platform that revolutionizes how AI-powered search is delivered. Built on a distributed network of providers who contribute GPU resources for LLM inference and bandwidth for search operations, Metafog creates a truly decentralized ecosystem for AI search capabilities. The platform offers high-performance APIs for developers to integrate AI search into their applications, while ensuring scalability, reliability, and cost-effectiveness through its distributed architecture. By leveraging the collective power of decentralized providers, Metafog eliminates single points of failure and creates a more resilient, accessible AI search infrastructure.
+  Kept for completeness, presented as history. These are early full-stack
+  builds and they're listed rather than argued for.
 */
-
-export const projects: Project[] = [
+export const archive: ArchivedProject[] = [
   {
-    title: 'cc-vault',
-    description: 'A lazygit-style TUI for browsing and managing Claude Code sessions.',
-    longDescription: 'A terminal UI built in Go for managing Claude Code sessions. Three-panel lazygit-style layout with full-text search, rename, delete, bulk operations, and markdown-rendered conversation preview. Reads local JSONL files directly with optimized partial reads for instant loading.',
-    tech: ['Go', 'Bubble Tea', 'Lip Gloss'],
-    image: 'cc-vault.jpg',
-    features: [
-      'Three-panel layout: projects, sessions, and markdown-rendered preview',
-      'Full-text search across all session content',
-      'Rename, delete, bulk delete, and prune empty sessions',
-      'Export sessions to clean markdown files',
-      'Press Enter to resume any session directly in Claude Code',
-    ],
-    githubUrl: 'https://github.com/Adithyan777/cc-vault',
-    featured: true,
-    notCompleted: false,
-  },
-  {
-    title: 'Metafog - Decentralized AI Search Platform',
-    description: 'A decentralized AI search platform powered by distributed GPU providers and bandwidth contributors.',
-    longDescription: 'A decentralized AI search platform built on distributed network of providers who contribute GPU resources for LLM inference and bandwidth for search operations. The platform offers high-performance APIs, real-time web crawling for accurate data retrieval, and LLM integration for intelligent summarization. Built with scalable infrastructure using Docker and Nginx',
-    tech: ['Next.js', 'Docker', 'Nginx', 'Ollama', 'LlamaIndex', 'Netbird', 'SearXNG'],
-    image: 'metafog.jpg',
-    features: [
-      'Decentralized provider network for GPU and bandwidth contribution',
-      'High-performance API for developers to integrate AI search capabilities',
-      'Real-time web crawling with decentralized bandwidth allocation',
-      'Scalable infrastructure using Docker containerization and Nginx load balancing',
-      'Fault-tolerant architecture with automatic failover mechanisms',
-    ],
-    demoUrl: 'https://metafog.io/',
-    // githubUrl: '', // Add GitHub URL when available
-    featured: true,
-    notCompleted: false
-  },
-  {
-    title: 'ArXiv RAG System - AI-Powered Research Assistant',
-    description: 'An AI-powered research assistant enabling semantic search, Q&A, and paper analysis over ArXiv research papers.',
-    longDescription: 'A comprehensive Retrieval Augmented Generation (RAG) system designed for ArXiv research papers, featuring automated PDF ingestion, fine-tuned domain-specific LLMs, and multi-provider inference. Built with LangChain, Qdrant, and Streamlit, the system enables intelligent semantic search, targeted question answering, and deep paper exploration.',
-    tech: ['LangChain', 'Qdrant', 'Docling', 'Unsloth', 'Hugging Face', 'Ollama', 'Streamlit', 'Docker', 'Python'],
-    image: 'arxiv-rag.jpg',
-    features: [
-      'Built a LangChain + Qdrant RAG pipeline for semantic search and contextual Q&A',
-      'Automated data ingestion and processing using Docling for PDF parsing and content extraction',
-      'Fine-tuned Qwen 8B & 14B models using Unsloth + QLoRA for domain-specific responses',
-      'Integrated multiple LLM providers (LMStudio, OpenRouter, IO.NET) for flexible generation',
-      'Interactive Streamlit UI for global Q&A and targeted paper exploration',
-      'Deployed using Docker Compose for seamless orchestration of vector DB and inference services'
-    ],
-    githubUrl: 'https://github.com/Adithyan777/arxiv-rag',
-    featured: true,
-    notCompleted: false
-  },
-  {
-    title: 'BiasBalance',
-    description: 'A dataset bias detection and augmentation tool.',
-    longDescription: 'A Streamlit-based web application for analyzing categorical data, detecting bias, performing independence testing, and augmenting data with AI.',
-    tech: ['Streamlit', 'OpenAI API', 'Pydantic', 'Docker', 'GitHub Actions'],
-    image: 'bias-balance.jpg',
-    features: [
-      'Dataset upload with automatic categorical column detection',
-      'Bias detection using Chi-squared tests',
-      'Independence testing between categorical variables',
-      'AI-powered data augmentation to balance bias',
-    ],
-    demoUrl: 'https://biasbalance.onrender.com/',
-    githubUrl: 'https://github.com/Adithyan777/BiasBalance',
-    featured: true,
-    notCompleted: false,
-    coldReboot: true,
-  },
-  {
-    title: 'Kanban-Board Task Manager',
-    description: 'A task management dashboard with list and Kanban board views.',
-    longDescription: 'A web app for managing tasks with drag-and-drop Kanban board functionality, user authentication, and advanced task filtering and sorting features.',
-    tech: ['Next.js', 'Express.js', 'MongoDB', 'Shadcn', 'dnd-kit'],
-    image: 'kanban.jpg',
-    features: [
-      'JWT-based user authentication',
-      'CRUD operations for tasks',
-      'Task filtering and sorting by status, priority, and due date',
-      'Drag-and-drop functionality for Kanban board',
-    ],
-    demoUrl: 'https://kanban-frontend-4iqd.vercel.app/', 
-    githubUrl: 'https://github.com/Adithyan777/kanban-frontend',
-    featured: false,
-    testCredentials: {
-      email: "test@gmail.com",
-      password: "12345678"
-    }
+    title: 'Kanban Task Manager',
+    blurb: 'Task dashboard with list and drag-and-drop board views.',
+    year: '2024',
+    href: 'https://github.com/Adithyan777/kanban-frontend',
   },
   {
     title: 'BunkBetter',
-    description: 'A comprehensive attendance tracker for students.',
-    longDescription: 'A web application for managing attendance records with user authentication, developed with the MERN stack for scalability and reliability.',
-    tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Vite'],
-    image: 'bunk-better.jpg',
-    features: [
-      'Secure authentication using JWT',
-      'Real-time attendance tracking',
-      'Live deployment on Vercel'
-    ],
-    demoUrl: 'https://bunk-better.vercel.app/',
-    githubUrl: 'https://github.com/Adithyan777/bunk-better',
-    featured: false,
-    testCredentials: {
-      email: "test@gmail.com",
-      password: "12345678"
-    }
+    blurb: 'Attendance tracker for students.',
+    year: '2024',
+    href: 'https://github.com/Adithyan777/bunk-better',
   },
   {
-    title: 'CodeCatalyst',
-    description: 'A CLI tool to streamline developer environment setup.',
-    longDescription: 'A Python-based CLI tool that automates and simplifies developer environment setup using AI-powered agents, reducing setup time by over 65%.',
-    tech: ['Python', 'AutoGen', 'Docker', 'Typer', 'Rich', 'OpenAI API'],
-    image: 'code-catalyst.jpg',
-    features: [
-      'AI-driven automation with AutoGen and OpenAI APIs',
-      'Custom AutoGen Agent classes for specialized tasks',
-      'Supports both traditional and Docker-based environments'
-    ],
-    // demoUrl: 'https://codecatalyst.demo', 
-    githubUrl: 'https://github.com/Adithyan777/code-catalyst',
-    featured: false,
-    notCompleted: true
+    title: 'Database Q&A Agent',
+    blurb: 'Natural-language querying over a SQL database.',
+    year: '2024',
+    href: 'https://github.com/Adithyan777/database-agent',
   },
-  {
-    title: 'AI Database Q&A Agent',
-    description: 'An AI agent for natural language database queries.',
-    longDescription: 'A Streamlit-based AI tool that enables users to interact with databases using natural language, automating SQL query generation and execution.',
-    tech: ['Python', 'LangChain', 'Streamlit', 'OpenAI API', 'PostgreSQL'],
-    image: 'https://via.placeholder.com/800x600.png?text=AI+Database+Q&A+Agent',
-    features: [
-      'Natural language database querying',
-      'Automated SQL command generation',
-      'Context-aware responses',
-      'User-friendly interface with Streamlit'
-    ],
-    // demoUrl: 'https://aidatabaseqa.demo',
-    githubUrl: 'https://github.com/Adithyan777/database-agent', // Add your GitHub URL here
-    featured: false,
-    notCompleted: false
-  }
 ];
