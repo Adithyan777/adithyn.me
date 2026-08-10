@@ -36,15 +36,15 @@ export function WorkRow({ item, first }: { item: WorkMeta; first?: boolean }) {
       <p className="mt-2 max-w-prose text-muted-foreground">{item.blurb}</p>
 
       {/* Number leads, label explains, so the row scans before it reads.
-          Divided between items rather than boxed, and it holds up at any
-          count: some work has three measured results, some has one. */}
+          Stacked on mobile: the dividers key off index, not visual position,
+          so on a wrapped row the first item would keep a dangling border. */}
       {item.metrics && (
-        <dl className="mt-5 flex flex-wrap gap-y-4">
+        <dl className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-y-4">
           {item.metrics.map((metric, i) => (
             <div
               key={metric.label}
-              className={`max-w-[22ch] pr-6 ${
-                i > 0 ? 'border-l border-border pl-6' : ''
+              className={`sm:max-w-[22ch] sm:pr-6 ${
+                i > 0 ? 'sm:border-l sm:border-border sm:pl-6' : ''
               }`}
             >
               <dt className="font-mono text-h2 font-medium tabular leading-none text-foreground">
