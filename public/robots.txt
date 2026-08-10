@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /loading
 Sitemap: https://adithyn.dev/sitemap.xml

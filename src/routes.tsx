@@ -4,7 +4,6 @@ import { HomePage } from '@/pages/home';
 import { ProjectsPage } from '@/pages/all-projects';
 import { WritingPage } from '@/pages/writing';
 import { PostPage, WorkPage } from '@/pages/post';
-import { LoadingPage } from '@/pages/loading';
 import { ErrorPage, NotFoundPage } from '@/pages/error';
 import { posts, work } from '@/lib/content';
 
@@ -35,7 +34,6 @@ export const routes: RouteRecord[] = [
             .filter((entry) => entry.meta.writeup)
             .map((entry) => `/work/${entry.meta.slug}`),
       },
-      { path: 'loading', element: <LoadingPage /> },
       /* Prerendered to dist/404.html, which Vercel serves for unmatched paths. */
       { path: '404', element: <NotFoundPage /> },
       { path: '*', element: <NotFoundPage /> },

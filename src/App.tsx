@@ -3,7 +3,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Navbar } from '@/components/navbar';
 
 /* Routes with their own back-link, which don't want the section nav. */
-const BARE_ROUTES = ['/projects', '/loading'];
+const BARE_ROUTES = ['/projects'];
 
 function isBare(pathname: string) {
   return (
