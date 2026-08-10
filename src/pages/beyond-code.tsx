@@ -20,7 +20,7 @@ const items: Item[] = [
   {
     title: 'Football',
     description:
-      'Watching it, analysing it, playing it badly. Non-negotiable weekend structure.',
+      'The one thing outside work I take seriously. I would rather be playing than watching, but I do plenty of both.',
     glyph: (
       <>
         <circle cx="16" cy="16" r="11" {...stroke} />
@@ -32,7 +32,7 @@ const items: Item[] = [
   {
     title: 'Cooking',
     description:
-      'Mostly an excuse to work through a cuisine methodically until I get it right.',
+      'Currently more ambition than ability. I like the idea of being good at it enough to keep working at it.',
     glyph: (
       <>
         <path d="M6.5 14.5h19v5.5a6 6 0 0 1-6 6h-7a6 6 0 0 1-6-6z" {...stroke} />
@@ -43,7 +43,8 @@ const items: Item[] = [
   },
   {
     title: 'Travel',
-    description: 'New places, unfamiliar food, no itinerary worth the name.',
+    description:
+      'Random trips, planned as little as possible. New places, new food, new people, mostly figured out after landing.',
     glyph: (
       <>
         <path

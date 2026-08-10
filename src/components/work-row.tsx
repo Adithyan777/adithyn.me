@@ -35,15 +35,22 @@ export function WorkRow({ item, first }: { item: WorkMeta; first?: boolean }) {
 
       <p className="mt-2 max-w-prose text-muted-foreground">{item.blurb}</p>
 
-      {/* Number leads, label explains — the row scans before it reads. */}
+      {/* Number leads, label explains, so the row scans before it reads.
+          Divided between items rather than boxed, and it holds up at any
+          count: some work has three measured results, some has one. */}
       {item.metrics && (
-        <dl className="mt-4 flex flex-wrap gap-x-8 gap-y-3 border-l border-border pl-4">
-          {item.metrics.map((metric) => (
-            <div key={metric.label}>
-              <dt className="font-mono text-h3 font-medium tabular leading-none text-foreground">
+        <dl className="mt-5 flex flex-wrap gap-y-4">
+          {item.metrics.map((metric, i) => (
+            <div
+              key={metric.label}
+              className={`max-w-[22ch] pr-6 ${
+                i > 0 ? 'border-l border-border pl-6' : ''
+              }`}
+            >
+              <dt className="font-mono text-h2 font-medium tabular leading-none text-foreground">
                 {metric.value}
               </dt>
-              <dd className="mt-1 text-micro text-muted-foreground">
+              <dd className="mt-1.5 text-micro leading-snug text-muted-foreground">
                 {metric.label}
               </dd>
             </div>

@@ -19,7 +19,7 @@ export const papers: Paper[] = [
     href: 'https://arxiv.org/abs/2608.04804',
     date: 'Aug 2026',
     contribution:
-      'Built the system and ran the experiments — training pipeline for the 7B searcher, the verification gate that strips unsupported claims, the cost-aware router, and the evaluation harness.',
+      'Built the system and ran the experiments: the training pipeline for the 7B searcher, the verification gate that strips unsupported claims, the cost-aware router, and the evaluation harness.',
   },
   {
     title:

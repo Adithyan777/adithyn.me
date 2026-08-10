@@ -74,7 +74,7 @@ export function ErrorPage() {
     <ErrorShell
       code={status}
       title="Something went wrong"
-      message="This page failed to load. Reloading usually fixes it — if it doesn’t, the links below still work."
+      message="This page failed to load. Reloading usually fixes it. If it doesn’t, the links below still work."
       path="/error"
     />
   );

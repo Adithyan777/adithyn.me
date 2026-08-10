@@ -66,7 +66,7 @@ export function WritingPage() {
     <div className="pb-20">
       <SEO
         title="Writing"
-        description="Essays and notes on AI systems, agents, and building things that work — by Adithyan K."
+        description="Essays and notes on AI systems, agents, and building things that work. By Adithyan K."
         path="/writing"
       />
       <Container className="pt-14">

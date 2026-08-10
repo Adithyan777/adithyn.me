@@ -41,25 +41,37 @@ export function Hero() {
   return (
     <Container className="pt-20 md:pt-28">
       <div>
-        <p className="meta mb-6 flex items-center gap-2.5">
-          {/* Live status — the one ambient animation on the page. */}
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
-          </span>
-          Open to research and applied AI roles
-        </p>
+        {/*
+          A masthead, not a stack: identity left, status right, one rule under
+          both. The rule is what gives the name a slot and turns three loose
+          blocks into a composition.
+        */}
+        <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-3 border-b border-border pb-4">
+          <div>
+            <h1 className="text-h2 font-semibold tracking-tight">Adithyan K</h1>
+            <p className="meta mt-1">AI Research Engineer, SuperAGI</p>
+          </div>
 
-        <h1 className="max-w-[18ch] text-display font-semibold">
+          <p className="meta flex items-center gap-2">
+            {/* Live status — the one ambient animation on the page. */}
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
+            </span>
+            Open to research and applied AI roles
+          </p>
+        </div>
+
+        <p className="mt-10 max-w-[18ch] text-display font-semibold">
           I build AI systems, and the tools that prove they work.
-        </h1>
+        </p>
 
         <div className="mt-6 max-w-prose space-y-4">
           <p className="text-lead text-foreground/90">
-            I'm Adithyan — an AI research engineer at SuperAGI. I trained a 7B
-            model that reads a codebase before an agent tries to fix it, built
-            the retrieval layer inside our coding agent, and wrote the
-            evaluation platform that tells us whether any of it actually helped.
+            I trained a 7B model that reads a codebase before an agent tries to
+            fix it, built the retrieval layer inside our coding agent, and wrote
+            the evaluation platform that tells us whether any of it actually
+            helped.
           </p>
           <p className="text-muted-foreground">
             Two papers came out of that this year. Before the research work I

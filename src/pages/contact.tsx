@@ -35,7 +35,7 @@ export function ContactPage() {
           Open to research and applied AI roles.
         </p>
         <p className="mt-2 max-w-prose text-muted-foreground">
-          Happy to talk about anything on this page — the papers especially.
+          Happy to talk about anything on this page, the papers especially.
         </p>
 
         <div className="mt-7 flex flex-wrap items-center gap-3">

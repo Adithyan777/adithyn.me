@@ -7,16 +7,17 @@ featured: true
 blurb: >-
   Cost-aware routing for coding agents. A 7B model I trained scouts the
   repository first, and its verified findings decide which frontier model is
-  worth paying for. Matches the best single model at about a fifth the cost
-  per solve.
-stack: [Go, Python, Qwen2.5-Coder, LoRA, vLLM, H100]
+  worth paying for. I built the training pipeline and the evals that
+  benchmarked four frontier models head to head on SWE-bench Pro, where the
+  system matches the best single model at about a fifth the cost per solve.
+stack: [Python, Qwen2.5-Coder, LoRA, vLLM, Modal, H100]
 metrics:
   - value: '1/5'
     label: the cost per solve
-  - value: '266'
-    label: task census, SWE-bench Pro
-  - value: 7B
-    label: searcher trained on one H100
+  - value: $86
+    label: to train the searcher end to end
+  - value: 3,000+
+    label: agent eval episodes run
 links:
   - label: Paper
     href: https://arxiv.org/abs/2608.04804

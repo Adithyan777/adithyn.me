@@ -15,7 +15,7 @@ export function ProjectsPage() {
     <div className="pb-20">
       <SEO
         title="Projects"
-        description="Projects by Adithyan K — AI systems, developer tools, and full-stack applications."
+        description="Projects by Adithyan K: AI systems, developer tools, and full-stack applications."
         path="/projects"
       />
       <Container className="pt-14">
@@ -28,7 +28,7 @@ export function ProjectsPage() {
         </Link>
         <h1 className="mt-6 text-h1 font-semibold">Projects</h1>
         <p className="mt-2 max-w-prose text-muted-foreground">
-          Everything worth listing, newest first — from research systems built
+          Everything worth listing, newest first, from research systems built
           at work to things I made because I wanted them to exist.
         </p>
       </Container>
