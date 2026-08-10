@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/resume",
+      "destination": "/resume.pdf",
+      "permanent": true
+    },
+    {
       "source": "/linkedin",
       "destination": "https://www.linkedin.com/in/adithyan-krishnan-1b32bb290",
       "permanent": true
