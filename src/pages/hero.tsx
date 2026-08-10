@@ -13,6 +13,12 @@ const chips: Chip[] = [
     onClick: () => trackEvent(AnalyticsEvents.RESUME_DOWNLOAD, { link: 'Résumé' }),
   },
   {
+    mark: 'scholar',
+    label: 'Google Scholar',
+    href: siteConfig.social.scholar,
+    onClick: () => trackEvent(AnalyticsEvents.SOCIAL_CLICK, { link: 'Google Scholar' }),
+  },
+  {
     mark: 'github',
     label: 'GitHub',
     href: siteConfig.social.github,

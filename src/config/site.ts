@@ -7,6 +7,7 @@ export const siteConfig = {
     github: "https://github.com/Adithyan777",
     linkedin: "https://www.linkedin.com/in/adithyan-krishnan-1b32bb290",
     twitter: "https://x.com/adithyn_krshna",
+    scholar: "https://scholar.google.com/citations?user=JSJuuR0AAAAJ",
   },
   features: {
     blog: false, // single toggle to bring blog back

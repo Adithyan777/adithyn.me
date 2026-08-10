@@ -32,6 +32,13 @@ export const marks: Record<string, ReactNode> = {
       <path d="M7.4 14V6.5m0 2.2c.5-1.4 1.6-2.2 2.9-2.2 1.6 0 2.7 1.1 2.7 3V14" {...stroke} />
     </>
   ),
+  scholar: (
+    <>
+      <path d="M8 2 1.6 5.6 8 9.2l6.4-3.6z" {...stroke} />
+      <path d="M4.2 7.3v3.2c0 .9 1.7 1.6 3.8 1.6s3.8-.7 3.8-1.6V7.3" {...stroke} />
+      <path d="M14.4 5.7v3.6" {...stroke} />
+    </>
+  ),
   email: (
     <>
       <rect x="1.8" y="3.2" width="12.4" height="9.6" rx="1.5" {...stroke} />

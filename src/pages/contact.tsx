@@ -7,6 +7,7 @@ import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 const EMAIL = 'adithyn.krshna@gmail.com';
 
 const elsewhere = [
+  { label: 'Google Scholar', href: siteConfig.social.scholar },
   { label: 'GitHub', href: siteConfig.social.github },
   { label: 'LinkedIn', href: siteConfig.social.linkedin },
   { label: 'X', href: siteConfig.social.twitter },
