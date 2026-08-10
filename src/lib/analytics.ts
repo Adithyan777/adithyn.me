@@ -13,11 +13,28 @@ export const AnalyticsEvents = {
   EXPERIENCE_COMPANY_CLICK: 'experience_company_click',
 } as const;
 
+/*
+  Caught so analytics can't break the page, but not silent: a capture firing
+  before init() cost five months of $pageview data, and the empty catch is why
+  nobody noticed.
+*/
 export function trackEvent(event: string, properties?: Record<string, unknown>) {
+  if (typeof window === 'undefined') return;
+
+  if (!posthog.__loaded) {
+    if (import.meta.env.DEV) {
+      console.warn(
+        `[analytics] dropped "${event}" — posthog was not initialised yet. ` +
+          `Check that init runs before render in main.tsx.`
+      );
+    }
+    return;
+  }
+
   try {
     posthog.capture(event, properties);
-  } catch {
-    // silently fail — analytics should never break the app
+  } catch (error) {
+    if (import.meta.env.DEV) console.warn(`[analytics] "${event}" failed`, error);
   }
 }
 

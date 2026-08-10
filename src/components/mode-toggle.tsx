@@ -1,16 +1,21 @@
 import { Moon, Sun } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/components/theme-provider';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
+/*
+  Both icons render; CSS swaps them off the `dark` class. Branching on theme in
+  JSX caused a hydration mismatch — the prerender has no localStorage.
+*/
 export function ModeToggle() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme } = useTheme();
 
   const handleToggle = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    trackEvent(AnalyticsEvents.THEME_TOGGLE, { theme: newTheme });
-    setTheme(newTheme);
+    /* Read the applied class — `theme` may be "system", which can't be inverted. */
+    const isDark = document.documentElement.classList.contains('dark');
+    const next = isDark ? 'light' : 'dark';
+    trackEvent(AnalyticsEvents.THEME_TOGGLE, { theme: next });
+    setTheme(next);
   };
 
   return (
@@ -18,19 +23,11 @@ export function ModeToggle() {
       variant="ghost"
       size="icon"
       onClick={handleToggle}
-      className="mode-toggle"
+      aria-label="Toggle theme"
+      className="relative"
     >
-      <motion.div
-        initial={{ scale: 0.5, rotate: 0 }}
-        animate={{ scale: 1, rotate: theme === 'dark' ? 180 : 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        {theme === 'light' ? (
-          <Sun className="h-5 w-5" />
-        ) : (
-          <Moon className="h-5 w-5" />
-        )}
-      </motion.div>
+      <Sun className="h-[18px] w-[18px] rotate-0 scale-100 transition-all duration-300 dark:-rotate-90 dark:scale-0" />
+      <Moon className="absolute h-[18px] w-[18px] rotate-90 scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100" />
       <span className="sr-only">Toggle theme</span>
     </Button>
   );

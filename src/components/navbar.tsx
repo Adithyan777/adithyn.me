@@ -1,32 +1,32 @@
 import { NavLinks } from '@/components/nav-links';
 import { MobileNav } from '@/components/mobile-nav';
 import { ModeToggle } from '@/components/mode-toggle';
+import { Container } from '@/components/section';
 import { useEffect, useState } from 'react';
 
+/* Border appears only after scrolling, so the page opens without a line. */
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center">
-      <header className={`transition-all duration-700 ease-out rounded-full backdrop-blur-md border
-        ${isScrolled 
-          ? 'mt-2 shadow-lg w-[90%] max-w-5xl' 
-          : 'w-[98%] max-w-7xl'}`}>
-        <div className="flex items-center justify-between p-4 px-8">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 bg-background/85 backdrop-blur-md transition-colors duration-300 ${
+        isScrolled ? 'border-b border-border' : 'border-b border-transparent'
+      }`}
+    >
+      <Container>
+        <div className="flex h-14 items-center justify-between gap-6">
+          <NavLinks className="hidden items-center gap-6 md:flex" />
           <MobileNav />
-          <NavLinks className="hidden md:flex gap-8 items-center" />
           <ModeToggle />
         </div>
-      </header>
-    </div>
+      </Container>
+    </header>
   );
 }

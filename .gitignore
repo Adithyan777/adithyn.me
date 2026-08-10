@@ -27,3 +27,8 @@ dist-ssr
 private
 package-lock.json
 .env
+
+.claude/
+
+# vite-react-ssg build scratch
+.vite-react-ssg-temp

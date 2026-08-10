@@ -12,10 +12,8 @@ export function MobileNav() {
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-[240px] sm:w-[300px]">
-        <nav className="flex flex-col gap-4 mt-4">
-          <NavLinks />
-        </nav>
+      <SheetContent side="right" className="w-[260px]">
+        <NavLinks className="mt-10 flex-col gap-5 text-base" />
       </SheetContent>
     </Sheet>
   );

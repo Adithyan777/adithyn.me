@@ -1,25 +1,26 @@
 {
-    "redirects": [
-        {
-            "source": "/linkedin",
-            "destination": "https://www.linkedin.com/in/adithyan-krishnan-1b32bb290",
-            "permanent": true
-        },
-        {
-            "source": "/twitter",
-            "destination": "https://x.com/adithyn_krshna",
-            "permanent": true
-        },
-        {
-            "source": "/github",
-            "destination": "https://github.com/Adithyan777",
-            "permanent": true
-        }
-    ],
-    "rewrites": [
-        {
-            "source": "/((?!api/).*)",
-            "destination": "/"
-        }
-    ]
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/resume",
+      "destination": "/resume.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/linkedin",
+      "destination": "https://www.linkedin.com/in/adithyan-krishnan-1b32bb290",
+      "permanent": true
+    },
+    {
+      "source": "/twitter",
+      "destination": "https://x.com/adithyn_krshna",
+      "permanent": true
+    },
+    {
+      "source": "/github",
+      "destination": "https://github.com/Adithyan777",
+      "permanent": true
+    }
+  ]
 }

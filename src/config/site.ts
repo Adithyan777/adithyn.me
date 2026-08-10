@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "Adithyan K",
   title: "Adithyan K | Portfolio",
-  description: "Adithyan K — AI/ML engineer building production AI systems, agentic infrastructure, and intelligent backends.",
-  url: "https://adithyn.me",
+  description: "Adithyan K, an AI research engineer building production AI systems, agent infrastructure, and the evaluation to back them.",
+  url: "https://adithyn.dev",
   social: {
     github: "https://github.com/Adithyan777",
     linkedin: "https://www.linkedin.com/in/adithyan-krishnan-1b32bb290",

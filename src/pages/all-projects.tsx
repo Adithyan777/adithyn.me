@@ -1,75 +1,81 @@
-import { motion } from 'framer-motion';
-import { ProjectCard } from '@/components/project-card';
-import { projects } from '@/data/projects';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useMediaQuery } from '@/hooks/use-media-query';
-import { ProjectCardMobile } from '@/components/project-card-mobile';
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
+import { Container, Section } from '@/components/section';
+import { WorkList } from '@/components/work-row';
+import { SEO } from '@/components/seo';
+import { featuredWork, otherWork } from '@/lib/content';
+import { archive } from '@/data/archive';
+import { trackOutboundClick } from '@/lib/analytics';
 
 export function ProjectsPage() {
-  const navigate = useNavigate();
-  const isMobile = useMediaQuery('(max-width: 640px)');
+  const featured = featuredWork.map((entry) => entry.meta);
+  const other = otherWork.map((entry) => entry.meta);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="max-w-7xl mx-auto py-12 px-2 relative"
-    >
-      <div className="flex justify-between items-start mb-6">
-        <motion.h1 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-5xl font-bold"
+    <div className="pb-20">
+      <SEO
+        title="Projects"
+        description="Projects by Adithyan K: AI systems, developer tools, and full-stack applications."
+        path="/projects"
+      />
+      <Container className="pt-14">
+        <Link
+          to="/"
+          className="meta inline-flex items-center gap-1.5 transition-colors hover:text-primary"
         >
-          All Projects
-        </motion.h1>
-        
-        <Button 
-          variant="ghost"  className="mt-3 flex items-center gap-2"
-          onClick={() => navigate(-1)}
-        >
-          Go Back <ArrowLeft className="h-4 w-4" />
-        </Button>
-      </div>
+          <ArrowLeft className="h-3 w-3" />
+          Back
+        </Link>
+        <h1 className="mt-6 text-h1 font-semibold">Projects</h1>
+        <p className="mt-2 max-w-prose text-muted-foreground">
+          Everything worth listing, newest first, from research systems built
+          at work to things I made because I wanted them to exist.
+        </p>
+      </Container>
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="grid gap-6 px-2 sm:grid-cols-2"
-      >
-        {projects.map((project, index) => (
-          isMobile ? (
-            <ProjectCardMobile
+      <Section label="Selected work" count={featured.length}>
+        <WorkList items={featured} />
+      </Section>
+
+      <Section label="Other projects" count={other.length}>
+        <WorkList items={other} />
+      </Section>
+
+      {/* Compact and low-contrast — here for completeness, not argued for. */}
+      <Section label="Earlier" count={archive.length}>
+        <ul className="max-w-prose">
+          {archive.map((project, i) => (
+            <li
               key={project.title}
-              project={project}
-              index={index}
-              variant={project.featured ? 'featured' : 'default'}
-            />
-          ) : (
-            <ProjectCard
-              key={project.title}
-              project={project}
-              index={index}
-              variant={project.featured ? 'featured' : 'default'}
-            />
-          )
-        ))}
-      </motion.div>
-    </motion.div>
+              className={`flex items-baseline justify-between gap-6 py-2.5 ${
+                i > 0 ? 'border-t border-border' : ''
+              }`}
+            >
+              <div className="flex flex-wrap items-baseline gap-x-2">
+                {project.href ? (
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackOutboundClick(project.href!, project.title)}
+                    className="text-small text-foreground/80 transition-colors hover:text-primary"
+                  >
+                    {project.title}
+                  </a>
+                ) : (
+                  <span className="text-small text-foreground/80">
+                    {project.title}
+                  </span>
+                )}
+                <span className="text-small text-muted-foreground">
+                  {project.blurb}
+                </span>
+              </div>
+              <time className="meta shrink-0">{project.year}</time>
+            </li>
+          ))}
+        </ul>
+      </Section>
+    </div>
   );
 }

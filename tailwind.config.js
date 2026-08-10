@@ -11,10 +11,32 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Schibsted Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+      },
+      // Small, confident scale. Nothing display-sized.
+      fontSize: {
+        micro: ['0.6875rem', { lineHeight: '1.4' }], // 11px — mono labels
+        small: ['0.8125rem', { lineHeight: '1.5' }], // 13px
+        base: ['0.9375rem', { lineHeight: '1.65' }], // 15px — body
+        lead: ['1.0625rem', { lineHeight: '1.6' }], // 17px — hero thesis
+        h3: ['1rem', { lineHeight: '1.4' }],
+        h2: ['1.25rem', { lineHeight: '1.3' }],
+        h1: ['1.75rem', { lineHeight: '1.2' }],
+        display: ['clamp(2.5rem, 6vw, 3.5rem)', { lineHeight: '1.02', letterSpacing: '-0.035em' }],
+      },
+      letterSpacing: {
+        label: '0.08em',
+      },
+      maxWidth: {
+        measure: '52rem', // ~820px — the single content column
+        prose: '38rem', // ~65 characters for running text
+      },
       borderRadius: {
         lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        md: 'calc(var(--radius) - 1px)',
+        sm: 'calc(var(--radius) - 2px)',
       },
       colors: {
         background: 'hsl(var(--background))',

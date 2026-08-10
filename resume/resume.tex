@@ -1,0 +1,203 @@
+%-------------------------
+% Resume - Version C: Balanced (General Purpose / Portfolio Download)
+% Adithyan K
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+% \input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.15in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{8pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-2pt}]
+
+% \pdfgentounicode=1
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Adithyan K} \\ \vspace{2pt}
+    \small AI Research Engineer $|$ Agent Systems, Evaluation \& LLM Infrastructure \\ \vspace{3pt}
+    \small \href{mailto:adithyn.krshna@gmail.com}{\underline{adithyn.krshna@gmail.com}} $|$
+    +91 7034046267 $|$
+    \href{https://adithyn.dev}{\underline{adithyn.dev}} $|$
+    \href{https://github.com/Adithyan777}{\underline{GitHub}} $|$
+    \href{https://www.linkedin.com/in/adithyan-krishnan-1b32bb290}{\underline{LinkedIn}}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Manipal Institute of Technology}{Bengaluru, India}
+      {B.Tech in Computer Science and Engineering (AI), \textbf{CGPA: 8.41}}{Sep. 2022 -- Present}
+      \resumeItemListStart
+        \resumeItem{\textbf{Relevant Coursework:} Machine Learning, Deep Learning, Natural Language Processing, Generative AI, Reinforcement Learning, Data Structures \& Algorithms}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PUBLICATIONS-----------
+\section{Publications}
+  \resumeSubHeadingListStart
+
+    \item
+      {\small\textbf{Scrouting: Cost-Aware Routing of Coding Agents by Scouting the Repository First}} \hfill {\small\href{https://arxiv.org/abs/2608.04804}{\underline{arXiv:2608.04804}}} \\[0.4mm]
+      {\small\emph{SuperAGI Research, Aug 2026}} \\[0.4mm]
+      {\small Built the system and ran the experiments: training pipeline, the verification gate that strips unsupported reproduction claims, the cost-aware router, and the evaluation harness.}
+      \vspace{5pt}
+
+    \item
+      {\small\textbf{Code Isn't Memory: A Structural Codebase Index Inside a Coding Agent}} \hfill {\small\href{https://arxiv.org/abs/2606.22417}{\underline{arXiv:2606.22417}}} \\[0.4mm]
+      {\small\emph{SuperAGI Research, Jun 2026}} \\[0.4mm]
+      {\small Built the evaluation platform and ran the experiments, including the leak-audit protocol and localization metric.}
+      \vspace{3pt}
+
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {AI Research Engineer}{Jul 2026 -- Present}
+      {SuperAGI}{Bengaluru, India}
+      \resumeItemListStart
+        \resumeItem{\textbf{SuperScout:} Trained a 7B repository-search model end to end and built the cost-aware routing system around it: contamination-controlled curation of a 19.9K-example training corpus, a custom sample-packing pipeline, LoRA fine-tuning of Qwen2.5-Coder, a verification gate that replays and strips unsupported reproduction claims, and a hidden-state router. Tech: PyTorch, PEFT, vLLM, Modal, H100. \textbf{Matches the best frontier model at about a fifth the cost per solve} on the full SWE-bench Pro Python census; \$86 end-to-end training run.}
+        \resumeItem{\textbf{Agent Evaluation:} Built the evaluation harness benchmarking \textbf{four frontier models head to head} across providers and coding benchmarks, with matched-cost protocols, sandboxed per-episode execution, and an LLM-usage proxy as the cost source of truth. Tech: Python, Modal, vLLM, SQLite. \textbf{3,000+ agentic eval episodes} run across three compute planes.}
+        \resumeItem{\textbf{SuperCoder Evals:} Built the evaluation platform behind \emph{Code Isn't Memory}: job orchestration, three-vector leak auditing, fail-closed preflight identity gates, and a localization metric designed not to favour our own system. \textbf{819 agent runs} over a 3-arm $\times$ 3-seed ablation across 31 repositories and 173 per-commit indexes.}
+      \resumeItemListEnd
+
+    \resumeSubSubheading
+      {AI Engineer, Intern}{Jan 2026 -- Jul 2026}
+      \resumeItemListStart
+        \resumeItem{\textbf{Vibe Coder:} Built the execution and deployment infrastructure for SuperAGI's production AI app builder: Modal sandboxes with build/serve/proxy tooling that runs LLM-generated full-stack apps and streams a live preview from a prompt, plus a static deploy pipeline on S3 + CloudFront using edge functions for per-app subdomain routing off one distribution. Tech: Go, Modal, AWS S3/CloudFront, Redis, asynq. \textbf{450+ apps generated and served}.}
+        \resumeItem{\textbf{Digital Employees:} Built the backend for autonomous voice + avatar agents that join client meetings to run sales demos: the agent loop, the STT pipeline over a managed WebSocket, and segment-wise slide control via LLM structured outputs with graceful drain and session rehydration. Tech: Go, LiveKit, Deepgram, ElevenLabs, cgo. \textbf{Used across 4,000+ meetings} in production.}
+        \resumeItem{\textbf{SuperCoder:} Built the Rust client for the context engine in \href{https://github.com/TransformerOptimus/SuperCoder}{\underline{SuperCoder}}, SuperAGI's open-source local-first coding agent: repository parsing and structure-aware chunking across \textbf{10 languages}, with a resumable content-addressed sync protocol. Tech: Rust, tree-sitter.}
+        \resumeItem{\textbf{Common Stack:} Go, Python, Rust, PostgreSQL, Redis, Modal, Docker, OpenTelemetry, Bazel.}
+      \resumeItemListEnd
+
+    % Keep the Lifie entry whole rather than orphaning its heading.
+    \newpage
+    \resumeSubheading
+      {Co-Founder \& Technical Lead}{Jul 2025 -- Present}
+      {Lifie, voice and chat AI for businesses}{Remote}
+      \resumeItemListStart
+        \resumeItem{Co-founded a voice + chat AI platform: \textbf{REACH} (outbound voice engagement) and \textbf{ASSIST} (inbound chat support and sales workflows), and own the architecture end to end.}
+        \resumeItem{Built the entire AI + backend layer of \textbf{ASSIST}, a multi-tenant \textbf{Mastra}/TypeScript agent platform live in production: per-business RAG on \textbf{Qdrant + FastEmbed}, multi-pass guardrail validation, tool-calling, and configurable workflows over the \textbf{WhatsApp Cloud API}; built \textbf{Lifie Hub}, an agent-discovery layer with vector search and \textbf{A2A + MCP} for cross-platform agent interoperability.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {AI Product Development Intern}{June 2025 -- July 2025}
+      {QpiAI}{Bengaluru, India}
+      \resumeItemListStart
+        \resumeItem{Built and shipped a complete sales support agent on QpiAI's Agent Hive platform: automated lead research, enrichment, and personalized outreach generation, replacing a previously manual workflow.}
+        \resumeItem{Integrated LLM APIs and internal SLMs for dynamic lead scoring, enrichment, and content generation across the pipeline.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+        {\textbf{cc-vault} $|$ \emph{Go, Bubble Tea, Lip Gloss}}{\href{https://github.com/Adithyan777/cc-vault}{\underline{GitHub}}}
+        \resumeItemListStart
+          \resumeItem{Built a terminal UI in \textbf{Go} for browsing and managing \textbf{Claude Code} sessions: a three-panel layout with full-text search across every conversation, markdown-rendered preview, rename/delete/bulk operations, export to markdown, and resume-in-place; reads local JSONL transcripts directly with optimized partial reads for instant loading.}
+        \resumeItemListEnd
+
+      \resumeProjectHeading
+        {\textbf{Metafog.io} $|$ \emph{Next.js, Docker, Nginx, Ollama, LlamaIndex}}{\href{https://metafog.io/}{\underline{Live Link}}}
+        \resumeItemListStart
+          \resumeItem{Built the full stack of a decentralized AI search engine: a crawl $\rightarrow$ retrieve $\rightarrow$ LLM-summarize (\textbf{LlamaIndex}) pipeline served by a network of \textbf{external provider nodes} contributing GPU inference (\textbf{Ollama}) and bandwidth; owned frontend, backend, Docker orchestration, and Nginx load balancing across provider nodes.}
+        \resumeItemListEnd
+
+      \resumeProjectHeading
+        {\textbf{ArXiv Research Q\&A} $|$ \emph{Unsloth, QLoRA, Hugging Face, LangChain, Qdrant, Docker}}{\href{https://github.com/Adithyan777/arxiv-rag}{\underline{GitHub}}}
+        \resumeItemListStart
+          \resumeItem{Fine-tuned \textbf{Qwen 8B \& 14B} with \textbf{QLoRA + Unsloth} on a domain-specific research corpus and built the end-to-end pipeline: PDF ingestion, chunking, embedding, and \textbf{Qdrant + LangChain} retrieval-grounded inference to reduce out-of-context hallucinations.}
+        \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Core}{: LLM Fine-tuning, Agent Evaluation \& Benchmarking, Agent Infrastructure, RAG Pipelines, Backend Architecture} \\[1.6mm]
+     \textbf{Languages}{: Python, TypeScript, Go, Rust, JavaScript, SQL} \\[1.6mm]
+     \textbf{AI/ML}{: LoRA/QLoRA (Unsloth, PEFT), vLLM, PyTorch, Hugging Face, Multi-Agent Systems, Mastra, LangChain, Context Engineering, Structured Outputs, MCP, A2A, Voice AI (LiveKit), Vector Search (Qdrant, FastEmbed)} \\[1.6mm]
+     \textbf{Infrastructure}{: Modal, Docker, AWS (S3, CloudFront), GCP, Nginx, FastAPI, GitHub Actions, PostgreSQL, Qdrant, ChromaDB, tree-sitter} \\[1.6mm]
+    }}
+ \end{itemize}
+
+\end{document}

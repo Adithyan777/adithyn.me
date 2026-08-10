@@ -1,83 +1,90 @@
-import { Card, CardHeader, CardContent } from '@/components/ui/card';
-import { motion } from 'framer-motion';
-import { IoIosFootball } from "react-icons/io";
-import { Utensils, Plane } from 'lucide-react';
+import { ReactNode } from 'react';
+import { Section } from '@/components/section';
 
-const containerVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { 
-      duration: 0.8,
-      when: "beforeChildren",
-      staggerChildren: 0.2
-    }
-  }
+/* Drawn at the page's hairline weight so they read as part of the system. */
+const stroke = {
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.2,
+  strokeLinecap: 'round' as const,
+  strokeLinejoin: 'round' as const,
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.5 }
-  }
+type Item = {
+  title: string;
+  description: string;
+  glyph: ReactNode;
 };
 
-const hobbies = [
-    {
-      icon: <IoIosFootball className="text-4xl" />,
-      title: "Football",
-      description: "I'm a massive football fan, I follow the game with unmatched enthusiasm. Whether it's watching matches, analyzing plays, or kicking the ball around, football keeps me energized and inspired."
-    },
-    {
-      icon: <Utensils size={32}/>,
-      title: "Food",
-      description: "I really enjoy exploring diverse cuisines as well as experimenting them in the kitchen. Good food fuels creativity!"
-    },
-    {
-      icon: <Plane size={32} />,
-      title: "Travelling",
-      description: "Exploring new places, experiencing different cultures, and creating lasting memories through adventures around the world."
-    }
-  ];
+const items: Item[] = [
+  {
+    title: 'Football',
+    description:
+      'The one thing outside work I take seriously. I would rather be playing than watching, but I do plenty of both.',
+    glyph: (
+      <>
+        <circle cx="16" cy="16" r="11" {...stroke} />
+        <path d="M16 9.5l5.2 3.8-2 6.1h-6.4l-2-6.1z" {...stroke} />
+        <path d="M16 5.2v4.3M26.4 13.3l-5.2 0M22.8 25l-3.4-5.6M9.2 25l3.4-5.6M5.6 13.3l5.2 0" {...stroke} />
+      </>
+    ),
+  },
+  {
+    title: 'Cooking',
+    description:
+      'Currently more ambition than ability. I like the idea of being good at it enough to keep working at it.',
+    glyph: (
+      <>
+        <path d="M6.5 14.5h19v5.5a6 6 0 0 1-6 6h-7a6 6 0 0 1-6-6z" {...stroke} />
+        <path d="M25.5 16.5h2.6a2.4 2.4 0 0 1 0 4.8h-2.6" {...stroke} />
+        <path d="M12 10.5c0-1.6 1.6-1.9 1.6-3.5M16 10.5c0-1.6 1.6-1.9 1.6-3.5M20 10.5c0-1.6 1.6-1.9 1.6-3.5" {...stroke} />
+      </>
+    ),
+  },
+  {
+    title: 'Travel',
+    description:
+      'Random trips, planned as little as possible. New places, new food, new people, mostly figured out after landing.',
+    glyph: (
+      <>
+        <path
+          d="M29.3 2.7 20 29.3l-5.3-12-12-5.3z"
+          {...stroke}
+        />
+        <path d="M29.3 2.7 14.7 17.3" {...stroke} />
+      </>
+    ),
+  },
+];
 
+/* One strip, dividers between items rather than a rule above each. */
 export function BeyondCode() {
-
   return (
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        className="max-w-6xl mx-auto py-12 px-2"
-      >
-        <h2 className="text-5xl font-bold mb-4">Beyond Code</h2>
-        <p className="text-muted-foreground">
-          When I'm not immersed in AI algorithms or debugging code, you'll likely find me exploring my other passions:
-        </p>
-        
-        <div className="grid grid-cols-1 px-2 mt-12 space-y-8 md:space-y-0 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {hobbies.map((hobby) => (
-            <motion.div
-              key={hobby.title}
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              className="rounded-lg transition-all h-full"
+    <Section id="beyond-code" label="Beyond code">
+      <ul className="grid sm:grid-cols-3">
+        {items.map((item, i) => (
+          <li
+            key={item.title}
+            className={`group py-5 sm:py-0 ${
+              i > 0
+                ? 'border-t border-border sm:border-l sm:border-t-0 sm:pl-6'
+                : ''
+            } ${i < items.length - 1 ? 'sm:pr-6' : ''}`}
+          >
+            <svg
+              viewBox="0 0 32 32"
+              aria-hidden
+              className="h-8 w-8 text-muted-foreground transition-colors duration-300 group-hover:text-primary"
             >
-              <Card className="p-6 h-full flex flex-col">
-                <CardHeader className="space-y-2">
-                  <div>{hobby.icon}</div>
-                  <h3 className="text-3xl font-bold">{hobby.title}</h3>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{hobby.description}</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+              {item.glyph}
+            </svg>
+            <h3 className="mt-3 text-small font-medium">{item.title}</h3>
+            <p className="mt-1 max-w-[32ch] text-small text-muted-foreground">
+              {item.description}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </Section>
   );
 }

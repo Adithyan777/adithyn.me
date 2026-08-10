@@ -8,26 +8,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Darker+Grotesque:wght@300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
     />
-    <title>Adithyan K | Portfolio</title>
+    <!-- Head tags are emitted per route by src/components/seo.tsx. Duplicating
+         them here produced two of each, and the static one won. -->
 
-    <!-- SEO Meta -->
-    <meta name="description" content="Adithyan K — AI/ML engineer building production AI systems, agentic infrastructure, and intelligent backends." />
-    <link rel="canonical" href="https://adithyn.me/" />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Adithyan K | Portfolio" />
-    <meta property="og:description" content="Adithyan K — AI/ML engineer building production AI systems, agentic infrastructure, and intelligent backends." />
-    <meta property="og:url" content="https://adithyn.me/" />
-    <meta property="og:site_name" content="Adithyan K" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Adithyan K | Portfolio" />
-    <meta name="twitter:description" content="Adithyan K — AI/ML engineer building production AI systems, agentic infrastructure, and intelligent backends." />
-    <meta name="twitter:creator" content="@adithyn_krshna" />
+    <!-- Theme class before first paint, else dark-mode visitors see a flash.
+         Keep the storage key in sync with ThemeProvider. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('portfolio-theme');
+          var dark =
+            stored === 'dark' ||
+            ((!stored || stored === 'system') &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var root = document.documentElement;
+          root.classList.add(dark ? 'dark' : 'light');
+        } catch (e) {
+          /* private mode or storage disabled — fall through to light */
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
