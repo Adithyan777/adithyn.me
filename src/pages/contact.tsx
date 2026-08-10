@@ -13,11 +13,7 @@ const elsewhere = [
   { label: 'Résumé', href: '/resume.pdf' },
 ];
 
-/*
-  A closing block, not a section that shouts. One primary action, the address
-  itself available to copy for anyone who'd rather not open a mail client, and
-  everything else on a single quiet line.
-*/
+/* One primary action, a copyable address, everything else on one quiet line. */
 export function ContactPage() {
   const [copied, setCopied] = useState(false);
 

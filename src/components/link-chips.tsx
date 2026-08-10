@@ -1,11 +1,8 @@
 import { ReactNode } from 'react';
 
 /*
-  A control cluster, not four naked links. Same construction as the copy chip
-  in Contact, so it reads as a component that recurs rather than a one-off.
-
-  Marks are drawn inline at the hairline weight the rest of the page uses —
-  imported icon sets bring their own optical weight and never quite sit right.
+  Marks drawn inline at the page's hairline weight — icon sets carry their own
+  optical weight and never sit right against it.
 */
 const stroke = {
   fill: 'none',

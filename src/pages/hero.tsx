@@ -33,13 +33,7 @@ const chips: Chip[] = [
   },
 ];
 
-/*
-  Hero and About are one block. A reader shouldn't meet your name and then hit
-  research papers with no idea who's behind them.
-
-  The only motion is a short entrance on load — once, on mount, never tied to
-  scroll position.
-*/
+/* Hero and About are one block. Motion is a single entrance on mount. */
 const rise = {
   hidden: { opacity: 0, y: 8 },
   show: { opacity: 1, y: 0 },
@@ -58,6 +52,7 @@ export function Hero() {
           transition={{ duration: 0.4, ease: 'easeOut' }}
           className="meta mb-6 flex items-center gap-2.5"
         >
+          {/* Live status — the one ambient animation on the page. */}
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />

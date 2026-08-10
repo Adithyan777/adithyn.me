@@ -5,7 +5,7 @@ export type Paper = {
   arxiv: string;
   href: string;
   date: string;
-  /* What I did on it — stated as work, not as authorship position. */
+  /* Stated as work, not authorship position. */
   contribution: string;
 };
 

@@ -1,10 +1,7 @@
 import { ReactNode } from 'react';
 import { Section } from '@/components/section';
 
-/*
-  Glyphs drawn at the same 1px hairline weight as the rules on the page, so
-  they read as part of the system instead of as an imported icon set.
-*/
+/* Drawn at the page's hairline weight so they read as part of the system. */
 const stroke = {
   fill: 'none',
   stroke: 'currentColor',
@@ -59,10 +56,7 @@ const items: Item[] = [
   },
 ];
 
-/*
-  One strip, dividers between items rather than a rule above each. Smaller and
-  more confident than three columns of body copy.
-*/
+/* One strip, dividers between items rather than a rule above each. */
 export function BeyondCode() {
   return (
     <Section id="beyond-code" label="Beyond code">

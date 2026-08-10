@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react';
 
 /*
-  Reports which section is currently in view. This is a state indicator, not a
-  scroll animation — it tells you where you are, it doesn't reveal content.
-
-  Deliberately not an IntersectionObserver: with several short sections on
-  screen at once you have to pick a winner, and "topmost intersecting" means
-  the final section can never win — the page runs out before it reaches the
-  top. Reading positions directly makes the rule explicit, and the last
-  section gets an override when the document is scrolled to the end.
+  Which section is in view. Not an IntersectionObserver: with several sections
+  on screen, "topmost intersecting" means the last one can never win — the page
+  ends before it reaches the top. Hence the explicit bottom-of-document case.
 */
 const ACTIVATION_LINE = 140; // px below the viewport top, clearing the navbar
 

@@ -4,10 +4,7 @@ import { ModeToggle } from '@/components/mode-toggle';
 import { Container } from '@/components/section';
 import { useEffect, useState } from 'react';
 
-/*
-  Links left, theme right, nothing in the middle. The border only appears once
-  you've scrolled past the hero so the page opens without a line across it.
-*/
+/* Border appears only after scrolling, so the page opens without a line. */
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 

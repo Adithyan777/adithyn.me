@@ -2,10 +2,7 @@ import { Section } from '@/components/section';
 import { papers } from '@/data/research';
 import { trackOutboundClick } from '@/lib/analytics';
 
-/*
-  The one bordered block on the page. Papers are the scarcest signal here, so
-  this is where the chrome gets spent — everything else stays open.
-*/
+/* The one bordered block — papers are the scarcest signal, so chrome goes here. */
 export function Research() {
   return (
     <Section id="research" label="Research">
@@ -28,8 +25,7 @@ export function Research() {
             </a>
 
             <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-2">
-              {/* The identifier gets a chip — it's the thing a reader
-                  verifies, so it should be findable at a glance. */}
+              {/* The identifier is what a reader verifies — make it findable. */}
               <span className="rounded border border-border px-1.5 py-0.5 font-mono text-micro text-primary transition-colors group-hover:border-primary/40">
                 {paper.arxiv}
               </span>

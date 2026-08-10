@@ -3,11 +3,8 @@ import { experience } from '@/data/experience';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 /*
-  A left rail, not cards. Employment is inherently sequential and a bordered
-  box per job fights that — the continuous line is the point.
-
-  Roles nest under their company, so a promotion reads as progression rather
-  than as two separate entries repeating the same employer.
+  A left rail, not cards — employment is sequential. Roles nest under their
+  company so a promotion reads as progression, not a repeated employer.
 */
 function Highlights({
   items,
@@ -34,7 +31,7 @@ export function ExperiencePage() {
   return (
     <Section id="experience" label="Experience">
       <ol className="relative">
-        {/* The rail. Stops short of the last marker so it doesn't dangle. */}
+        {/* Stops short of the last marker so it doesn't dangle. */}
         <span
           aria-hidden
           className="absolute bottom-6 left-[3.5px] top-2 w-px bg-border"
@@ -42,8 +39,7 @@ export function ExperiencePage() {
 
         {experience.map((company) => (
           <li key={company.name} className="relative pb-10 pl-6 last:pb-0">
-            {/* Filled marker for a current role, hollow for a past one —
-                state encoded in form, not only in the date. */}
+            {/* Filled for current, hollow for past — state in form, not just date. */}
             <span
               aria-hidden
               className={`absolute left-0 top-[7px] h-2 w-2 rounded-full border ${

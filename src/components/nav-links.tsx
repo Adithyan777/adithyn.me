@@ -44,8 +44,7 @@ export function NavLinks({ className }: { className?: string }) {
             )}
           >
             {link.label}
-            {/* Marks where you are. Fades rather than slides, so nothing
-                travels across the bar while you read. */}
+            {/* Fades rather than slides — nothing travels across the bar. */}
             <span
               aria-hidden
               className={cn(

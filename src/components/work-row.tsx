@@ -1,14 +1,9 @@
-import type { WorkItem } from '@/data/work';
+import { Link } from 'react-router-dom';
+import type { WorkMeta } from '@/lib/content';
 import { trackOutboundClick } from '@/lib/analytics';
 
-/*
-  One row of work.
-
-  The chrome is a single accent rail on the left edge that wipes in from the
-  top on hover — it marks where you are without adding a border that's there
-  all the time. Everything else stays open.
-*/
-export function WorkRow({ item, first }: { item: WorkItem; first?: boolean }) {
+/* Accent rail on hover marks the row without a permanent border. */
+export function WorkRow({ item, first }: { item: WorkMeta; first?: boolean }) {
   return (
     <li
       className={`group relative rounded-md px-5 py-6 transition-colors duration-200 hover:bg-card ${
@@ -22,7 +17,13 @@ export function WorkRow({ item, first }: { item: WorkItem; first?: boolean }) {
 
       <div className="flex items-baseline justify-between gap-4">
         <h3 className="text-h3 font-semibold tracking-tight">
-          {item.title}
+          {item.writeup ? (
+            <Link to={`/work/${item.slug}`} className="hover:text-primary">
+              {item.title}
+            </Link>
+          ) : (
+            item.title
+          )}
           {item.at && (
             <span className="ml-2 font-normal text-muted-foreground">
               · {item.at}
@@ -34,10 +35,7 @@ export function WorkRow({ item, first }: { item: WorkItem; first?: boolean }) {
 
       <p className="mt-2 max-w-prose text-muted-foreground">{item.blurb}</p>
 
-      {/*
-        Measured results, given room rather than buried in the sentence. The
-        number leads and the label explains it, so the row scans before it reads.
-      */}
+      {/* Number leads, label explains — the row scans before it reads. */}
       {item.metrics && (
         <dl className="mt-4 flex flex-wrap gap-x-8 gap-y-3 border-l border-border pl-4">
           {item.metrics.map((metric) => (
@@ -55,6 +53,16 @@ export function WorkRow({ item, first }: { item: WorkItem; first?: boolean }) {
 
       <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
         <p className="meta">{item.stack.join(' · ')}</p>
+
+        {item.writeup && (
+          <Link
+            to={`/work/${item.slug}`}
+            className="meta text-primary transition-opacity hover:opacity-70"
+          >
+            Read more →
+          </Link>
+        )}
+
         {item.links?.map((link) => (
           <a
             key={link.label}
@@ -78,7 +86,7 @@ export function WorkRow({ item, first }: { item: WorkItem; first?: boolean }) {
   );
 }
 
-export function WorkList({ items }: { items: WorkItem[] }) {
+export function WorkList({ items }: { items: WorkMeta[] }) {
   return (
     <ul className="-mx-5">
       {items.map((item, i) => (

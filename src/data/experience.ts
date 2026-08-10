@@ -1,7 +1,7 @@
 export type Role = {
   title: string;
   period: string;
-  /* Scoped to the role, so a promotion shows what actually changed. */
+  /* Scoped to the role, so a promotion shows what changed. */
   highlights?: string[];
 };
 
@@ -9,7 +9,7 @@ export type Company = {
   name: string;
   href?: string;
   period: string;
-  /* Newest first. More than one entry reads as progression. */
+  /* Newest first. */
   roles: Role[];
   summary?: string;
   highlights?: string[];

@@ -2,13 +2,22 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { Container, Section } from '@/components/section';
 import { WorkList } from '@/components/work-row';
-import { selectedWork } from '@/data/work';
-import { archive, otherProjects } from '@/data/projects';
+import { SEO } from '@/components/seo';
+import { featuredWork, otherWork } from '@/lib/content';
+import { archive } from '@/data/archive';
 import { trackOutboundClick } from '@/lib/analytics';
 
 export function ProjectsPage() {
+  const featured = featuredWork.map((entry) => entry.meta);
+  const other = otherWork.map((entry) => entry.meta);
+
   return (
     <div className="pb-20">
+      <SEO
+        title="Projects"
+        description="Projects by Adithyan K — AI systems, developer tools, and full-stack applications."
+        path="/projects"
+      />
       <Container className="pt-14">
         <Link
           to="/"
@@ -24,19 +33,16 @@ export function ProjectsPage() {
         </p>
       </Container>
 
-      <Section label="Selected work">
-        <WorkList items={selectedWork} />
+      <Section label="Selected work" count={featured.length}>
+        <WorkList items={featured} />
       </Section>
 
-      <Section label="Other projects">
-        <WorkList items={otherProjects} />
+      <Section label="Other projects" count={other.length}>
+        <WorkList items={other} />
       </Section>
 
-      {/*
-        Archive. Deliberately compact and low-contrast — early work is here for
-        completeness, and the treatment should say so without apologising.
-      */}
-      <Section label="Earlier">
+      {/* Compact and low-contrast — here for completeness, not argued for. */}
+      <Section label="Earlier" count={archive.length}>
         <ul className="max-w-prose">
           {archive.map((project, i) => (
             <li

@@ -2,12 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-  Design tokens.
-  Neutrals carry a faint warm cast; the single accent is a cool ink blue.
-  The warm/cool tension is deliberate — it keeps the accent reading as chosen
-  rather than decorative, and it's the only saturated colour on the page.
-*/
+/* Warm-cast neutrals, one cool ink accent — the only saturated colour here. */
 
 @layer base {
   :root {
@@ -114,13 +109,12 @@
 }
 
 @layer components {
-  /* Small uppercase mono label that opens each section. */
+  /* Mono sub-label. */
   .eyebrow {
     @apply font-mono text-micro uppercase tracking-label text-muted-foreground;
   }
 
-  /* Metadata: dates, stack, identifiers. Mono is what makes the page read
-     technical, so the borders don't have to. */
+  /* Dates, stack, identifiers. Mono carries the technical register. */
   .meta {
     @apply font-mono text-micro text-muted-foreground tabular;
   }
