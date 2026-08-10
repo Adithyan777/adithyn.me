@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Container } from '@/components/section';
 import { LinkChips, type Chip } from '@/components/link-chips';
 import { siteConfig } from '@/config/site';
@@ -33,46 +32,29 @@ const chips: Chip[] = [
   },
 ];
 
-/* Hero and About are one block. Motion is a single entrance on mount. */
-const rise = {
-  hidden: { opacity: 0, y: 8 },
-  show: { opacity: 1, y: 0 },
-};
-
+/*
+  Hero and About are one block. No entrance animation: framer-motion serialises
+  its initial state into the prerendered HTML, so the hero shipped at opacity:0
+  and stayed invisible until hydration.
+*/
 export function Hero() {
   return (
     <Container className="pt-20 md:pt-28">
-      <motion.div
-        initial="hidden"
-        animate="show"
-        transition={{ staggerChildren: 0.07, delayChildren: 0.05 }}
-      >
-        <motion.p
-          variants={rise}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="meta mb-6 flex items-center gap-2.5"
-        >
+      <div>
+        <p className="meta mb-6 flex items-center gap-2.5">
           {/* Live status — the one ambient animation on the page. */}
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
           </span>
           Open to research and applied AI roles
-        </motion.p>
+        </p>
 
-        <motion.h1
-          variants={rise}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="max-w-[18ch] text-display font-semibold"
-        >
+        <h1 className="max-w-[18ch] text-display font-semibold">
           I build AI systems, and the tools that prove they work.
-        </motion.h1>
+        </h1>
 
-        <motion.div
-          variants={rise}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="mt-6 max-w-prose space-y-4"
-        >
+        <div className="mt-6 max-w-prose space-y-4">
           <p className="text-lead text-foreground/90">
             I'm Adithyan — an AI research engineer at SuperAGI. I trained a 7B
             model that reads a codebase before an agent tries to fix it, built
@@ -94,16 +76,12 @@ export function Hero() {
             </a>
             , where we build voice and chat AI for businesses.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={rise}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="mt-8"
-        >
+        <div className="mt-8">
           <LinkChips chips={chips} />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </Container>
   );
 }

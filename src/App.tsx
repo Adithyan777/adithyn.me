@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Navbar } from '@/components/navbar';
 
@@ -20,6 +20,8 @@ export function Layout() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
       <div className="min-h-screen">
+        {/* Without this, navigating keeps the previous page's scroll offset. */}
+        <ScrollRestoration />
         {showNavbar && <Navbar />}
         <main className={showNavbar ? 'pt-14' : ''}>
           <Outlet />
