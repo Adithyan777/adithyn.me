@@ -9,7 +9,7 @@ import matter from 'gray-matter';
 */
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const SITE = 'https://adithyn.dev';
+const SITE = 'https://www.adithyn.dev';
 
 const today = new Date().toISOString().slice(0, 10);
 
