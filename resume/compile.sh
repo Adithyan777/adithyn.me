@@ -1,6 +1,6 @@
 #!/bin/bash
 # Build resume.tex and publish it as the site's served resume:
-#   public/resume.pdf  (available at adithyn.me/resume.pdf)
+#   public/resume.pdf  (available at adithyn.dev/resume.pdf)
 
 set -e
 cd "$(dirname "$0")"

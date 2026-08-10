@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /loading
-Sitemap: https://adithyn.me/sitemap.xml
+Sitemap: https://adithyn.dev/sitemap.xml
